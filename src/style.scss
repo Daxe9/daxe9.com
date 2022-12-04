@@ -1,0 +1,94 @@
+$primary: #000000;
+$text-color: #ABAD6E;
+
+$status-bar-color: #3A3A3A;
+$status-bar-title-color: #91886E;
+$status-bar-block-color: #949494;
+$status-bar-text-color: #FCC69F;
+
+@font-face {
+	font-family: "JetBrains Mono";
+	src: url("./assets/fonts/JetBrainsMono-Regular.ttf");
+}
+
+@font-face {
+	font-family: "JetBrains Mono";
+	src: url("./assets/fonts/JetBrainsMono-Bold.ttf");
+	font-weight: bold;
+}
+
+body {
+	margin: 0;
+	font-family: "JetBrains Mono";
+	min-width: 320px;
+	min-height: 100vh;
+	color: white;
+	background-color: $primary;
+}
+
+#app {
+	height: 100vh;
+}
+
+.main-container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+
+	.router {
+		flex-basis: 95%;
+		overflow: scroll;
+	}
+	.status-bar {
+		flex-basis: 2%;
+		width: 100%;
+		background-color: $status-bar-color;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		.status-text {
+			font-size: 0.95em;
+			width: fit-content;
+			background-color: $status-bar-block-color;
+			color: $status-bar-text-color;
+			padding: 0.05em 0.5em;
+		}
+		.status-title {
+			font-size: 0.95em;
+			flex-grow: 1;
+			padding: 0.05em 0.5em;
+			color: $status-bar-title-color;
+		}
+	}
+
+	.command-line {
+		flex-basis: 2%;
+		width: 100%;
+		color: $text-color;	
+	}
+}
+
+
+.content-line  {
+	div {
+		white-space: initial;
+		word-break: break-all;
+
+		span {
+			color: $status-bar-color;
+			margin: 0 0.4em;
+			white-space: pre-wrap !important;
+
+		}
+
+		* {
+			display: inline-block;
+			margin: 0.1em auto;
+		}
+	}
+}
+
+.text-center {
+	text-align: center;
+}
+
