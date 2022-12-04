@@ -10,32 +10,21 @@ onMounted(() => {
 	if (!lines) return;
 	
 	setLineNumbers(lines);
+
+	
 })
 
 </script>
 
 <template>
 	<div ref="contentContainer" class="content-line">
-		<div></div>	
-		<div></div>	
-		<div></div>	
-		<div></div>	
-		<div></div>	
-		<div></div>	
-		<div></div>	
-		<div></div>	
 		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-		<div><p>Welcome to my homepage</p></div>
+		<div>
+			<VueWriter 
+				class="title-writer"
+				:array="['Welcome to my portfolio inspired by ONE AND ONLY VIM.']"
+				:typeSpeed="70"
+				:iterations="1" />
+		</div>
 	</div>
 </template>

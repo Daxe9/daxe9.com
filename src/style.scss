@@ -73,17 +73,19 @@ body {
 	div {
 		white-space: initial;
 		word-break: break-all;
-
 		span {
 			color: $status-bar-color;
 			margin: 0 0.4em;
 			white-space: pre-wrap !important;
-
+			//flex-grow: 0;
 		}
 
 		* {
-			display: inline-block;
-			margin: 0.1em auto;
+			font-size: 1em;
+			display: inline;
+			padding: 0;
+			margin: 0;
+			
 		}
 	}
 }
@@ -92,3 +94,10 @@ body {
 	text-align: center;
 }
 
+// modify typer writer's font color
+.title-writer {
+	span.typed {
+		color: white !important;
+		margin: 0 0 !important;
+	}
+}
