@@ -7,108 +7,120 @@ $status-bar-block-color: #949494;
 $status-bar-text-color: #fcc69f;
 
 @font-face {
-  font-family: "JetBrains Mono";
-  src: url("./assets/fonts/JetBrainsMono-Regular.ttf");
+	font-family: "JetBrains Mono";
+	src: url("./assets/fonts/JetBrainsMono-Regular.ttf");
 }
 
 @font-face {
-  font-family: "JetBrains Mono";
-  src: url("./assets/fonts/JetBrainsMono-Bold.ttf");
-  font-weight: bold;
+	font-family: "JetBrains Mono";
+	src: url("./assets/fonts/JetBrainsMono-Bold.ttf");
+	font-weight: bold;
 }
 
 body {
-  margin: 0;
-  font-family: "JetBrains Mono";
-  min-width: 320px;
-  min-height: 100vh;
-  color: white;
-  background-color: $primary;
+	margin: 0;
+	font-family: "JetBrains Mono";
+	min-width: 320px;
+	min-height: 100vh;
+	color: white;
+	background-color: $primary;
 
-  // for webkit based browsers
-  ::-webkit-scrollbar {
-    display: none;
-  }
+	// for webkit based browsers
+	::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+* {
+	box-sizing: border-box;
 }
 
 #app {
-  height: 100vh;
+	height: 100vh;
 }
 
 .main-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
 
-  .router {
-    flex-basis: 95%;
-    overflow-y: scroll;
-    scrollbar-width: none;
-  }
+	.router {
+		flex-basis: 95%;
+		overflow-y: scroll;
+		scrollbar-width: none;
+	}
 
-  .status-bar {
-    width: 100%;
-    background-color: $status-bar-color;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    .status-text {
-      font-size: 0.95em;
-      width: fit-content;
-      background-color: $status-bar-block-color;
-      color: $status-bar-text-color;
-      padding: 0.05em 0.5em;
-    }
-    .status-title {
-      font-size: 0.95em;
-      flex-grow: 1;
-      padding: 0.05em 0.5em;
-      color: $status-bar-title-color;
-    }
-  }
+	.status-bar {
+		width: 100%;
+		background-color: $status-bar-color;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		.status-text {
+			font-size: 0.95em;
+			width: fit-content;
+			background-color: $status-bar-block-color;
+			color: $status-bar-text-color;
+			padding: 0.05em 0.5em;
+		}
+		.status-title {
+			font-size: 0.95em;
+			flex-grow: 1;
+			padding: 0.05em 0.5em;
+			color: $status-bar-title-color;
+		}
+	}
 
-  .command-line {
-    width: 100%;
-    color: $text-color;
+	.command-line {
+		width: 100%;
+		color: $text-color;
 
-    * {
-      margin: 0;
-    }
-  }
+		* {
+			margin: 0;
+		}
+
+		input[type="text"] {
+			background-color: $primary;
+			outline: none;
+			border: none;
+			width: 100%;
+			color: $text-color;
+			font-size: 1em;
+		}
+	}
 }
 
 .content-line {
-  div {
-    white-space: initial;
-    word-break: break-all;
-    span.line-number {
-      color: $status-bar-color;
-      margin: 0 0.4em;
-      white-space: pre-wrap !important;
-      //flex-grow: 0;
-    }
+	div {
+		white-space: initial;
+		word-break: break-all;
+		span.line-number {
+			color: $status-bar-color;
+			margin: 0 0.4em;
+			white-space: pre-wrap !important;
+		}
 
-    * {
-      font-size: 1em;
-      display: inline;
-      padding: 0;
-      margin: 0;
-    }
-  }
+		* {
+			font-size: 1em;
+			display: inline;
+			padding: 0;
+			margin: 0;
+		}
+	}
 }
 
 .text-center {
-  text-align: center;
+	text-align: center;
 }
 .underline {
-  text-decoration: underline;
+	text-decoration: underline;
 }
 
 // modify typer writer's font color
 .title-writer {
-  span.typed {
-    font-weight: bold;
-    color: white !important;
-    margin: 0 0 !important;
-  }
+	span.typed {
+		font-weight: bold;
+		color: white !important;
+		margin: 0 0 !important;
+	}
 }
