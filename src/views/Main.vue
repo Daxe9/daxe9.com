@@ -2,11 +2,12 @@
 import { ref, onMounted } from "vue";
 import { setLineNumbers } from "../services/line-number";
 import gsap from "gsap";
-const contentContainer = ref<HTMLElement | null>(null);
 
+const contentContainer = ref<HTMLElement | null>(null);
 const typeSpeed = 50;
 const title = "Welcome to my portfolio inspired by ONE AND ONLY VIM.";
 const showDetails = ref<boolean>(false);
+
 onMounted(() => {
 	const lines: HTMLCollection | undefined = contentContainer.value?.children;
 
@@ -27,7 +28,7 @@ if (import.meta.env.MODE === "production") {
 </script>
 
 <template>
-	<div ref="contentContainer" class="content-line">
+	<div ref="contentContainer" class="content-container">
 		<div></div>
 		<div>
 			<VueWriter
@@ -56,15 +57,15 @@ if (import.meta.env.MODE === "production") {
 		<div v-show="showDetails" class="details"></div>
 		<div v-show="showDetails" class="details"><p>Frontend:</p></div>
 		<div v-show="showDetails" class="details">
-			<p>&nbsp;&nbsp;&nbsp;&nbsp;HTML Css Javascript Nodejs Typescript Vuejs, React Svelte</p>
+			<p><Spacer space="4"/>HTML Css Javascript Nodejs Typescript Vuejs, React Svelte</p>
 		</div>
 		<div v-show="showDetails" class="details"><p>Backend:</p></div>
 		<div v-show="showDetails" class="details">
-			<p>&nbsp;&nbsp;&nbsp;&nbsp;Express Nestjs</p>
+			<p><Spacer space="4" />Express Nestjs</p>
 		</div>
 		<div v-show="showDetails" class="details"><p>Other tools:</p></div>
 		<div v-show="showDetails" class="details">
-			<p>&nbsp;&nbsp;&nbsp;&nbsp;Git, Docker, <span class="underline">Vim</span></p>
+			<p><Spacer space="4" />Git, Docker, <span class="underline">Vim</span></p>
 		</div>
 	</div>
 </template>

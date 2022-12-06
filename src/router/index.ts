@@ -6,6 +6,11 @@ const routes = [
 		path: "/",
 		name: "Main",
 		component: Main
+	},
+	{
+		path: "/:catchAll(.*)",
+		name: "NotFound",
+		component: () => import("../views/404.vue")
 	}
 ];
 

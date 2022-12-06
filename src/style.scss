@@ -33,6 +33,7 @@ body {
 
 * {
 	box-sizing: border-box;
+	font-family: "JetBrains Mono";
 }
 
 #app {
@@ -90,7 +91,7 @@ body {
 	}
 }
 
-.content-line {
+.content-container {
 	div {
 		white-space: initial;
 		word-break: break-all;
