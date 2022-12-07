@@ -19,10 +19,10 @@ function checkCommandInput(e: KeyboardEvent) {
 		isSemiPressed.value = false;
 
 		mode.value = "NORMAL"
-
+		
 		// redirect to selected page
-			// remove the first character ":" and go to the page
-			router.push(command.value.slice(1));
+		// remove the first character ":" and remove the whitespaces, then go to the page
+		router.push(command.value.slice(1).replace(/\s/g, ""));
 	} 
 
 	if (e.key === ":") {

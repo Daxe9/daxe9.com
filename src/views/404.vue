@@ -22,13 +22,13 @@ onMounted(() => {
 		<div></div>	
 		<div></div>	
 		<div>
-			<h1><Spacer space="4" />OOOOPS, there's no page with GIVEN NAME: {{ route.path }}</h1>
+			<h1><Spacer :space="4" />OOOOPS, there's no page with GIVEN NAME: {{ route.path }}</h1>
 		</div>	
 		<div></div>	
 		<div></div>	
 		<div></div>	
 		<div>
-			<p><Spacer />TIPS: try out command :/ </p>
+			<p><Spacer />TIPS: try out this command <router-link to="/" class="links">:/</router-link> or simply click it</p>
 		</div>	
 	</div>
 </template>

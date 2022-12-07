@@ -50,43 +50,50 @@ body {
 		overflow-y: scroll;
 		scrollbar-width: none;
 	}
-
-	.status-bar {
-		width: 100%;
-		background-color: $status-bar-color;
+	.controller {
+		flex-basis: 5%;	
 		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		.status-text {
-			font-size: 0.95em;
-			width: fit-content;
-			background-color: $status-bar-block-color;
-			color: $status-bar-text-color;
-			padding: 0.05em 0.5em;
-		}
-		.status-title {
-			font-size: 0.95em;
-			flex-grow: 1;
-			padding: 0.05em 0.5em;
-			color: $status-bar-title-color;
-		}
-	}
-
-	.command-line {
-		width: 100%;
-		color: $text-color;
-
-		* {
-			margin: 0;
+		flex-direction: column;
+		.status-bar {
+			width: 100%;
+			background-color: $status-bar-color;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			.status-text {
+				font-size: 0.95em;
+				font-weight: bold;
+				width: fit-content;
+				background-color: $status-bar-block-color;
+				color: $status-bar-text-color;
+				padding: 0.05em 0.5em;
+			}
+			.status-title {
+				font-size: 0.95em;
+				flex-grow: 1;
+				padding: 0.05em 0.5em;
+				color: $status-bar-title-color;
+			}
 		}
 
-		input[type="text"] {
-			background-color: $primary;
-			outline: none;
-			border: none;
+		.command-line {
 			width: 100%;
 			color: $text-color;
-			font-size: 1em;
+			background-color: transparent;
+			flex-grow: 1;	
+			* {
+				margin: 0;
+			}
+
+			input[type="text"] {
+				background-color: $primary;
+				height: 100%;
+				outline: none;
+				border: none;
+				width: 100%;
+				color: $text-color;
+				font-size: 1em;
+			}
 		}
 	}
 }
@@ -124,4 +131,10 @@ body {
 		color: white !important;
 		margin: 0 0 !important;
 	}
+}
+
+.links {
+	color: $text-color;
+	text-decoration: none;
+	font-weight: bold;
 }
