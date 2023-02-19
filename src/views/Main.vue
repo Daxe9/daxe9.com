@@ -63,6 +63,5 @@ if (import.meta.env.MODE === "production") {
 		<div v-show="showDetails" class="details">
 			<p><Spacer :space="4" />Git, Docker, <span class="underline">Vim</span></p>
 		</div>
-		<div class="comfort-level"><Spacer :space="2" /></div>
 	</div>
 </template>
