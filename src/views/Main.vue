@@ -18,7 +18,7 @@ onMounted(() => {
 });
 
 // debugging purposes
-if (import.meta.env.PROD) {
+if (import.meta.env.DEV) {
 	setTimeout(() => {
 		showDetails.value = true;
 		gsap.fromTo(".details", { opacity: 0 }, { opacity: 1, duration: 1.5 });
@@ -52,49 +52,19 @@ if (import.meta.env.PROD) {
 		</div>
 		<div v-show="showDetails"></div>
 		<div v-show="showDetails"></div>
-		<!--
-		<div v-show="showDetails" class="centered-text">
-			<div>
-				<p>
-                    Greetings!
-				</p>
-			</div>
-		</div>
-		<div v-show="showDetails" class="centered-text">
-			<div>
-				<p class="biography">
-					 I'm <span class="my-fucking-name">Davide Xie</span>, a 18 yo highschool student from Florence.
-				</p>
-			</div>
-		</div>
-		<div v-show="showDetails" class="centered-text">
-			<div>
-				<p>
-                    I'm taking a pre computer-science course at A. Meucci, but
-				</p>
-			</div>
-		</div>
-		<div v-show="showDetails" class="centered-text">
-			<div>
-				<p>
-                    most things I know are self-taught.
-				</p>
-			</div>
-		</div>
-        -->
-
-		<div v-show="showDetails"><Spacer /> Greetings!</div>
-		<div v-show="showDetails">
+		<div v-show="showDetails" class="details"><Spacer /> Greetings!</div>
+		<div v-show="showDetails" class="details">
 			<Spacer />
 			I am <span class="my-fucking-name">Davide Xie</span>, an 18-year-old high school student
 			from Florence.
 		</div>
-		<div v-show="showDetails">
+		<div v-show="showDetails" class="details">
 			<Spacer />
 			Currently, I am taking a pre computer-science course at A. Meucci, but most of knowledge
 			is self-taught. I have a dedicated page for my skills where others can learn more about
 			them(visit /skill).
 		</div>
+		<div v-show="showDetails"></div>
 		<div v-show="showDetails"></div>
 	</div>
 </template>
