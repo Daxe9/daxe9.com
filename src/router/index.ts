@@ -7,11 +7,11 @@ const routes = [
 		name: "Main",
 		component: Main
 	},
-    {
-        path: "/skill",
-        name: "Skill",
-        component: () => import("../views/Skill.vue")
-    },
+	{
+		path: "/skill",
+		name: "Skill",
+		component: () => import("../views/Skill.vue")
+	},
 	{
 		path: "/:catchAll(.*)",
 		name: "NotFound",

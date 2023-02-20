@@ -82,12 +82,12 @@ if (import.meta.env.PROD) {
 		</div>
         -->
 
-		<div v-show="showDetails"> Greetings!</div>
+		<div v-show="showDetails">Greetings!</div>
 		<div v-show="showDetails">
 			I am <span class="my-fucking-name">Davide Xie</span>, an 18-year-old high school student
 			from Florence.
 		</div>
-		<div v-show="showDetails"> 
+		<div v-show="showDetails">
 			Currently, I am taking a pre computer-science course at A. Meucci, but most of knowledge
 			is self-taught. I have a dedicated page for my skills where others can learn more about
 			them(visit /skill).

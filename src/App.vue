@@ -25,19 +25,19 @@ function checkCommandInput(e: KeyboardEvent) {
 		router.push(command.value.slice(1).replace(/\s/g, ""));
 	}
 
-    // when the semicolon is pressed,
-    // change the mode to COMMAND and clear the remain command
+	// when the semicolon is pressed,
+	// change the mode to COMMAND and clear the remain command
 	if (e.key === ":") {
 		isSemiPressed.value = true;
 		mode.value = "COMMAND";
 		command.value = ":";
 	} else {
-        // check if the pressed key is not a special key, e.g. shift ctrl alt
+		// check if the pressed key is not a special key, e.g. shift ctrl alt
 		if (isSemiPressed.value && e.key.length === 1) {
 			command.value += e.key;
 		}
 
-        // chech whether user has pressed backspace key
+		// chech whether user has pressed backspace key
 		if (e.key === "Backspace") {
 			command.value = command.value.slice(0, -1);
 		}

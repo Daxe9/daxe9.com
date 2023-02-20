@@ -2,7 +2,7 @@
 const props = defineProps({
 	space: {
 		type: Number,
-		default: 1,
+		default: 1
 	}
 });
 
@@ -15,4 +15,3 @@ for (let i = 0; i < props.space; i++) {
 <template>
 	<span v-html="spacer"></span>
 </template>
-
