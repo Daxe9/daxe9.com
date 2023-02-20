@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Spacer from "@/components/Spacer.vue";
 import { ref, onMounted } from "vue";
 import { setLineNumbers } from "../services/line-number";
 import gsap from "gsap";
@@ -21,7 +22,7 @@ if (import.meta.env.PROD) {
 	setTimeout(() => {
 		showDetails.value = true;
 		gsap.fromTo(".details", { opacity: 0 }, { opacity: 1, duration: 1.5 });
-	}, typeSpeed * title.length + 300);
+	}, typeSpeed * title.length + 400);
 } else {
 	showDetails.value = true;
 }
@@ -44,7 +45,7 @@ if (import.meta.env.PROD) {
 			</div>
 		</div>
 		<div v-show="showDetails"></div>
-		<div class="centered-text">
+		<div v-show="showDetails" class="centered-text">
 			<div>
 				<p>type `:[name of the page, aka the path]`</p>
 			</div>
@@ -82,12 +83,14 @@ if (import.meta.env.PROD) {
 		</div>
         -->
 
-		<div v-show="showDetails">Greetings!</div>
+		<div v-show="showDetails"><Spacer /> Greetings!</div>
 		<div v-show="showDetails">
+			<Spacer />
 			I am <span class="my-fucking-name">Davide Xie</span>, an 18-year-old high school student
 			from Florence.
 		</div>
 		<div v-show="showDetails">
+			<Spacer />
 			Currently, I am taking a pre computer-science course at A. Meucci, but most of knowledge
 			is self-taught. I have a dedicated page for my skills where others can learn more about
 			them(visit /skill).
