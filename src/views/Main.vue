@@ -18,7 +18,7 @@ onMounted(() => {
 });
 
 // debugging purposes
-if (import.meta.env.DEV) {
+if (import.meta.env.PROD) {
 	setTimeout(() => {
 		showDetails.value = true;
 		gsap.fromTo(".details", { opacity: 0 }, { opacity: 1, duration: 1.5 });
