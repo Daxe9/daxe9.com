@@ -9,7 +9,7 @@ const router = useRouter();
 
 onMounted(() => {
 	mainContainer.value?.focus();
-})
+});
 
 const isSemiPressed = ref<boolean>(false);
 
@@ -18,40 +18,46 @@ function checkCommandInput(e: KeyboardEvent) {
 	if (e.key === "Enter" || !command.value) {
 		isSemiPressed.value = false;
 
-		mode.value = "NORMAL"
-		
+		mode.value = "NORMAL";
+
 		// redirect to selected page
 		// remove the first character ":" and remove the whitespaces, then go to the page
 		router.push(command.value.slice(1).replace(/\s/g, ""));
-	} 
+	}
 
+    // when the semicolon is pressed,
+    // change the mode to COMMAND and clear the remain command
 	if (e.key === ":") {
 		isSemiPressed.value = true;
 		mode.value = "COMMAND";
 		command.value = ":";
 	} else {
-		if (isSemiPressed.value && !(e.key.length-1)) {
+        // check if the pressed key is not a special key, e.g. shift ctrl alt
+		if (isSemiPressed.value && e.key.length === 1) {
 			command.value += e.key;
-		} 
+		}
 
+        // chech whether user has pressed backspace key
 		if (e.key === "Backspace") {
 			command.value = command.value.slice(0, -1);
 		}
 	}
-
 }
 </script>
 
 <template>
-	<div class="main-container" tabindex="0" ref="mainContainer" @keydown="checkCommandInput" >
+	<div class="main-container" tabindex="0" ref="mainContainer" @keydown="checkCommandInput">
 		<div class="router">
 			<RouterView />
 		</div>
 		<div class="controller">
 			<div class="status-bar">
-				<div class="mode status-text">{{ mode }}</div>
-				<div class="mode status-title">xie.txt</div>
-				<div class="mode status-text">100% ln:0 %:1</div>
+				<div class="status-text">{{ mode }}</div>
+				<div class="status-title">
+					<div>xie.txt</div>
+					<div>Copyright © 2023 dev@daxe9.com</div>
+				</div>
+				<div class="status-text">100% ln:0 %:1</div>
 			</div>
 			<div class="command-line">
 				<input type="text" v-model="command" disabled />

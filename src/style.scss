@@ -51,7 +51,7 @@ body {
 		scrollbar-width: none;
 	}
 	.controller {
-		flex-basis: 5%;	
+		flex-basis: 5%;
 		display: flex;
 		flex-direction: column;
 		.status-bar {
@@ -69,10 +69,15 @@ body {
 				padding: 0.05em 0.5em;
 			}
 			.status-title {
-				font-size: 0.95em;
 				flex-grow: 1;
-				padding: 0.05em 0.5em;
-				color: $status-bar-title-color;
+				display: flex;
+				justify-content: space-between;
+
+				* {
+					font-size: 0.95em;
+					padding: 0.05em 0.5em;
+					color: $status-bar-title-color;
+				}
 			}
 		}
 
@@ -80,7 +85,7 @@ body {
 			width: 100%;
 			color: $text-color;
 			background-color: transparent;
-			flex-grow: 1;	
+			flex-grow: 1;
 			* {
 				margin: 0;
 			}
@@ -102,11 +107,6 @@ body {
 	div {
 		white-space: initial;
 		word-break: break-all;
-		span.line-number {
-			color: $status-bar-color;
-			margin: 0 0.4em;
-			white-space: pre-wrap !important;
-		}
 
 		* {
 			font-size: 1em;
@@ -115,13 +115,49 @@ body {
 			margin: 0;
 		}
 	}
+
+	// in order to make the text centered,
+	// the content needs to be wrapped in a div
+	div.centered-text {
+		display: flex;
+		justify-content: center;
+
+		span.line-number {
+			display: block;
+			flex-grow: 0;
+			flex-basis: 20.4px;
+			width: 20.4px;
+		}
+
+		div {
+			display: flex;
+			flex-grow: 1;
+			justify-content: center;
+
+			* {
+				width: fit-content;
+			}
+		}
+	}
+}
+
+span.line-number {
+	color: $status-bar-color;
+	margin: 0 0.4em;
+	white-space: pre-wrap !important;
+    width: 20.4px !important;
 }
 
 .text-center {
 	text-align: center;
 }
-.underline {
-	text-decoration: underline;
+
+.biography {
+	word-spacing: 0.1px;
+}
+
+.my-fucking-name {
+	color: #f3a654;
 }
 
 // modify typer writer's font color
@@ -137,4 +173,5 @@ body {
 	color: $text-color;
 	text-decoration: none;
 	font-weight: bold;
+	text-decoration: underline;
 }

@@ -5,7 +5,7 @@ import gsap from "gsap";
 
 const contentContainer = ref<HTMLElement | null>(null);
 const typeSpeed = 50;
-const title = "Welcome to my portfolio inspired by ONE AND ONLY VIM.";
+const title = "Welcome to my portfolio inspired by VIM.";
 const showDetails = ref<boolean>(false);
 
 onMounted(() => {
@@ -17,7 +17,7 @@ onMounted(() => {
 });
 
 // debugging purposes
-if (import.meta.env.MODE === "production") {
+if (import.meta.env.PROD) {
 	setTimeout(() => {
 		showDetails.value = true;
 		gsap.fromTo(".details", { opacity: 0 }, { opacity: 1, duration: 1.5 });
@@ -30,38 +30,68 @@ if (import.meta.env.MODE === "production") {
 <template>
 	<div ref="contentContainer" class="content-container">
 		<div></div>
-		<div>
-			<VueWriter
-				class="title-writer"
-				:array="[title]"
-				:typeSpeed="typeSpeed"
-				:iterations="1"
-			/>
-		</div>
 		<div></div>
 		<div></div>
 		<div></div>
-		<div v-show="showDetails" class="details">
-			<h1>My name is <span class="underline">Davide Xie</span>, currently @Florence, Italy.</h1>
+		<div class="centered-text">
+			<div>
+				<VueWriter
+					class="title-writer"
+					:array="[title]"
+					:typeSpeed="typeSpeed"
+					:iterations="1"
+				/>
+			</div>
 		</div>
-		<div v-show="showDetails" class="details"></div>
-		<div v-show="showDetails" class="details">
-			<p>I like frontend and backend stuffs, and these are some technologies I experienced
-				with:</p>
+		<div v-show="showDetails"></div>
+		<div class="centered-text">
+			<div>
+				<p>type `:[name of the page, aka the path]`</p>
+			</div>
 		</div>
-		<!-- TODO: comfortable level -->
-		<div v-show="showDetails" class="details"></div>
-		<div v-show="showDetails" class="details"><p>Frontend:</p></div>
-		<div v-show="showDetails" class="details">
-			<p><Spacer :space="4"/>HTML Css Javascript Nodejs Typescript Vuejs, React Svelte</p>
+		<div v-show="showDetails"></div>
+		<div v-show="showDetails"></div>
+		<!--
+		<div v-show="showDetails" class="centered-text">
+			<div>
+				<p>
+                    Greetings!
+				</p>
+			</div>
 		</div>
-		<div v-show="showDetails" class="details"><p>Backend:</p></div>
-		<div v-show="showDetails" class="details">
-			<p><Spacer :space="4" />Express Nestjs</p>
+		<div v-show="showDetails" class="centered-text">
+			<div>
+				<p class="biography">
+					 I'm <span class="my-fucking-name">Davide Xie</span>, a 18 yo highschool student from Florence.
+				</p>
+			</div>
 		</div>
-		<div v-show="showDetails" class="details"><p>Other tools:</p></div>
-		<div v-show="showDetails" class="details">
-			<p><Spacer :space="4" />Git, Docker, <span class="underline">Vim</span></p>
+		<div v-show="showDetails" class="centered-text">
+			<div>
+				<p>
+                    I'm taking a pre computer-science course at A. Meucci, but
+				</p>
+			</div>
 		</div>
+		<div v-show="showDetails" class="centered-text">
+			<div>
+				<p>
+                    most things I know are self-taught.
+				</p>
+			</div>
+		</div>
+        -->
+
+		<div v-show="showDetails"> Greetings!</div>
+		<div v-show="showDetails">
+			I am <span class="my-fucking-name">Davide Xie</span>, an 18-year-old high school student
+			from Florence.
+		</div>
+		<div v-show="showDetails"> 
+			Currently, I am taking a pre computer-science course at A. Meucci, but most of knowledge
+			is self-taught. I have a dedicated page for my skills where others can learn more about
+			them(visit /skill).
+		</div>
+		<div v-show="showDetails"></div>
 	</div>
 </template>

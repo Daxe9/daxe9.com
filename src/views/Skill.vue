@@ -22,8 +22,15 @@ onMounted(() => {
 		<div></div>	
 		<div></div>	
 		<div>
-			<h1><Spacer :space="4" />OOOOPS, there's no page with GIVEN NAME: {{ route.path }}</h1>
+			<h1><Spacer :space="4" />BROOOO, I'm so sorry the page is still in development.</h1>
 		</div>	
+		<div></div>	
+		<div></div>	
+		<div></div>	
+		<div>
+            <Spacer />
+            <p>Frontend: I lov</p>
+        </div>	
 		<div></div>	
 		<div></div>	
 		<div></div>	
@@ -32,3 +39,7 @@ onMounted(() => {
 		</div>	
 	</div>
 </template>
+
+<style scoped>
+
+</style>
