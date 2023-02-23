@@ -29,20 +29,23 @@ if (import.meta.env.PROD) {
 	showDetails.value = true;
 }
 
-/* watch(screenWidth, (newValue: number) => { */
-/* 	if (newValue < 480) { */
-/* 	// @ts-ignore */
-/* 	contentContainer.value?.children.forEach((element: Node) => { */
-/* 		if (element instanceof Element) { */
-/* 				console.log("yes") */
-/* 			} */
-/* 		/1* element.classList.remove("centered-text") *1/ */	
-/* 	}); */
-/* 		/1* for (const line of  as HTMLCollection) { *1/ */
-/* 		/1* 	line.classList.remove("centered-text") *1/ */
-/* 		/1* } *1/ */
-/* 	} */
-/* }) */
+watch(screenWidth, (newValue: number) => {
+	// check if the screen is too small to show the details
+	if (newValue < 480) {
+		for (const line of Array.from(contentContainer.value?.children || [])) {
+			if (line.classList.contains("centered-text")) {
+				line.classList.remove("centered-text");
+				(line as HTMLElement).dataset.needsCentered = "true";
+			}
+		}
+	} else {
+		for (const line of Array.from(contentContainer.value?.children || [])) {
+			if ((line as HTMLElement).dataset.needsCentered) {
+				line.classList.add("centered-text");
+			}
+		}
+	}
+});
 </script>
 
 <template>
@@ -64,7 +67,7 @@ if (import.meta.env.PROD) {
 		<div v-show="showDetails"></div>
 		<div v-show="showDetails" class="centered-text">
 			<div>
-				<p>type `:[name of the page, aka the path]`</p>
+				<p>type `:[path of the page]`</p>
 			</div>
 		</div>
 		<div v-show="showDetails"></div>
@@ -79,7 +82,7 @@ if (import.meta.env.PROD) {
 			<Spacer />
 			Currently, I am taking a pre computer-science course at A. Meucci, but most of knowledge
 			is self-taught. I have a dedicated page for my skills where others can learn more about
-			them(visit /skill).
+			them(visit <router-link class="links" to="/skill">/skill</router-link>).
 		</div>
 		<div v-show="showDetails"></div>
 		<div v-show="showDetails"></div>
