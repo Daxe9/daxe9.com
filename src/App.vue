@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
+import { useScreenSize } from "./composables/screenSize";
 
 const mainContainer = ref<HTMLElement | null>(null);
 const command = ref<string>(":help xie");
 const mode = ref<string>("NORMAL");
+const { width: screenWidth } = useScreenSize();
 const router = useRouter();
 
 onMounted(() => {
@@ -55,7 +57,7 @@ function checkCommandInput(e: KeyboardEvent) {
 				<div class="status-text">{{ mode }}</div>
 				<div class="status-title">
 					<div>xie.txt</div>
-					<div>Copyright © 2023 dev@daxe9.com</div>
+					<div v-show="screenWidth > 610">Copyright © 2023 dev@daxe9.com</div>
 				</div>
 				<div class="status-text">100% ln:0 %:1</div>
 			</div>

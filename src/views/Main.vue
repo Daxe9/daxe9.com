@@ -1,17 +1,19 @@
 <script lang="ts" setup>
 import Spacer from "@/components/Spacer.vue";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { setLineNumbers } from "../services/line-number";
+import { useScreenSize } from "../composables/screenSize";
+
 import gsap from "gsap";
 
-const contentContainer = ref<HTMLElement | null>(null);
+const contentContainer = ref<HTMLDivElement | null>(null);
 const typeSpeed = 50;
-const title = "Welcome to my portfolio inspired by VIM.";
+const title: string = "Welcome to my portfolio inspired by VIM.";
 const showDetails = ref<boolean>(false);
+const { width: screenWidth } = useScreenSize();
 
 onMounted(() => {
 	const lines: HTMLCollection | undefined = contentContainer.value?.children;
-
 	if (!lines) return;
 
 	setLineNumbers(lines);
@@ -26,6 +28,21 @@ if (import.meta.env.PROD) {
 } else {
 	showDetails.value = true;
 }
+
+/* watch(screenWidth, (newValue: number) => { */
+/* 	if (newValue < 480) { */
+/* 	// @ts-ignore */
+/* 	contentContainer.value?.children.forEach((element: Node) => { */
+/* 		if (element instanceof Element) { */
+/* 				console.log("yes") */
+/* 			} */
+/* 		/1* element.classList.remove("centered-text") *1/ */	
+/* 	}); */
+/* 		/1* for (const line of  as HTMLCollection) { *1/ */
+/* 		/1* 	line.classList.remove("centered-text") *1/ */
+/* 		/1* } *1/ */
+/* 	} */
+/* }) */
 </script>
 
 <template>
