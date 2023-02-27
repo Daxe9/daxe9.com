@@ -1,5 +1,5 @@
 import { ref, onMounted, Ref } from "vue";
-import { setLineNumbers } from "@/services/line-number";
+import { setLineNumbers } from "../services/line-number";
 
 export function useLineNumber(): Ref<HTMLElement | null> {
 	const contentContainer: Ref<HTMLElement | null> = ref(null);

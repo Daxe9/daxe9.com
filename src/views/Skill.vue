@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
-import { useLineNumber } from "@/composables/lineNumber";
+import { useLineNumber } from "../composables/lineNumber";
 import archLogo from "@/assets/archlinux.png";
 
 const contentContainer = useLineNumber();

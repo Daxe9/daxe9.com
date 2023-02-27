@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import Spacer from "@/components/Spacer.vue";
 import { ref, watch } from "vue";
-import { useScreenSize } from "@/composables/screenSize";
-import { useLineNumber } from "@/composables/lineNumber";
+import { useScreenSize } from "../composables/screenSize";
+import { useLineNumber } from "../composables/lineNumber";
 
 import gsap from "gsap";
 
