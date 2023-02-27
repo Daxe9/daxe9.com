@@ -15,7 +15,12 @@ onMounted(() => {
 
 const isSemiPressed = ref<boolean>(false);
 
-function checkCommandInput(e: KeyboardEvent) {
+function inputHandler(e: KeyboardEvent) {
+	if (e.key === "i") {
+		command.value = "Cannot make changes, 'modifiable' is off";	
+		return;
+	}
+
 	// check whether enter is pressed or there're no characters remain
 	if (e.key === "Enter" || !command.value) {
 		isSemiPressed.value = false;
@@ -48,7 +53,7 @@ function checkCommandInput(e: KeyboardEvent) {
 </script>
 
 <template>
-	<div class="main-container" tabindex="0" ref="mainContainer" @keydown="checkCommandInput">
+	<div class="main-container" tabindex="0" ref="mainContainer" @keydown="inputHandler">
 		<div class="router">
 			<RouterView />
 		</div>
