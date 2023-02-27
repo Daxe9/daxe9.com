@@ -4,7 +4,7 @@ import { useRouter } from "vue-router";
 import { useScreenSize } from "./composables/screenSize";
 
 const mainContainer = ref<HTMLElement | null>(null);
-const command = ref<string>(":help xie");
+const command = ref<string>("");
 const mode = ref<string>("NORMAL");
 const { width: screenWidth } = useScreenSize();
 const router = useRouter();
@@ -19,17 +19,6 @@ function inputHandler(e: KeyboardEvent) {
 	if (e.key === "i" && !command.value) {
 		command.value = "Cannot make changes, 'modifiable' is off";	
 		return;
-	}
-
-	// check whether enter is pressed or there're no characters remain
-	if (e.key === "Enter" || !command.value) {
-		isSemiPressed.value = false;
-
-		mode.value = "NORMAL";
-
-		// redirect to selected page
-		// remove the first character ":" and remove the whitespaces, then go to the page
-		router.push(command.value.slice(1).replace(/\s/g, ""));
 	}
 
 	// when the semicolon is pressed,
@@ -48,6 +37,18 @@ function inputHandler(e: KeyboardEvent) {
 		if (e.key === "Backspace") {
 			command.value = command.value.slice(0, -1);
 		}
+	}
+
+	// check whether enter is pressed or there're no characters remain
+	if (e.key === "Enter" || command.value === "") {
+		isSemiPressed.value = false;
+
+		mode.value = "NORMAL";
+		
+		// redirect to selected page
+		// remove the first character ":" and remove the whitespaces, then go to the page
+		router.push(command.value.slice(1).replace(/\s/g, ""));
+		return;
 	}
 }
 </script>
