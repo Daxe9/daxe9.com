@@ -1,22 +1,14 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
-import { setLineNumbers } from "../services/line-number";
 import { useRoute } from "vue-router";
+import { useLineNumber } from "@/composables/lineNumber";
+import archLogo from "@/assets/archlinux.png";
 
-const mainContainer = ref<HTMLElement | null>(null);
-const route = useRoute();
-
-onMounted(() => {
-	const lines: HTMLCollection | undefined = mainContainer.value?.children;
-
-	if (!lines) return;
-
-	setLineNumbers(lines);
-});
+const contentContainer = useLineNumber();
+// const route = useRoute();
 </script>
 
 <template>
-	<div ref="mainContainer" class="content-container">
+	<div ref="contentContainer" class="content-container">
 		<div></div>
 		<div></div>
 		<div></div>
@@ -25,11 +17,73 @@ onMounted(() => {
 		</div>
 		<div></div>
 		<div></div>
+		<div>
+			<Spacer :space="4" />
+			<p class="my-fucking-name">config.toml</p>
+		</div>
+		<div>
+			<Spacer :space="4" />
+			<p>[<a href="https://github.com/Daxe9/dotfiles" target="_blank" class="links">system</a>]</p>
+		</div>
+		<div>
+			<Spacer :space="4" />
+			<p>os = GNU/Linux</p>
+		</div>
+		<div>
+			<!-- here the space's three for aligning the text -->
+			<Spacer :space="3" />
+			<p>
+				distribution =
+				<img :src="archLogo" alt="arch linux logo" />
+			</p>
+		</div>
+		<div>
+			<Spacer :space="4" />
+			<p>display-server = X11(unfortunately)</p>
+		</div>
+		<div>
+			<Spacer :space="4" />
+			<p>window-manager = i3-gaps</p>
+		</div>
+		<div>
+			<Spacer :space="4" />
+			<p>compositor = picom</p>
+		</div>
+		<div>
+			<Spacer :space="4" />
+			<p>status-bar = polybar</p>
+		</div>
+		<div>
+			<Spacer :space="4" />
+			<p>application-launcher = rofi</p>
+		</div>
+		<div>
+			<Spacer :space="4" />
+			<p>editor = neovim</p>
+		</div>
 		<div></div>
 		<div>
-			<Spacer />
-			<p>Frontend: I lov</p>
+			<Spacer :space="4" />
+			<p>[frontend]</p>
 		</div>
+		<div>
+			<Spacer :space="4" />
+			<p>html = pretty good with it</p>
+		</div>
+		<div>
+			<Spacer :space="4" />
+			<p>css = hatred</p>
+		</div>
+		<div>
+			<Spacer :space="4" />
+			<p>js-ts = loved</p>
+		</div>
+		<div>
+			<Spacer :space="4" />
+			<p>vue = have been using it forever</p>
+		</div>
+		<div></div>
+		<div></div>
 		<div></div>
 		<div></div>
 		<div></div>
