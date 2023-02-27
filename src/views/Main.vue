@@ -1,29 +1,33 @@
 <script lang="ts" setup>
 import Spacer from "@/components/Spacer.vue";
-import { ref, onMounted, watch } from "vue";
-import { setLineNumbers } from "../services/line-number";
-import { useScreenSize } from "../composables/screenSize";
+import { ref, watch } from "vue";
+import { useScreenSize } from "@/composables/screenSize";
+import { useLineNumber } from "@/composables/lineNumber";
 
 import gsap from "gsap";
 
-const contentContainer = ref<HTMLDivElement | null>(null);
+const contentContainer = useLineNumber();
 const typeSpeed = 50;
 const title: string = "Welcome to my portfolio inspired by VIM.";
 const showDetails = ref<boolean>(false);
 const { width: screenWidth } = useScreenSize();
 
-onMounted(() => {
-	const lines: HTMLCollection | undefined = contentContainer.value?.children;
-	if (!lines) return;
-
-	setLineNumbers(lines);
-});
-
-// debugging purposes
 if (import.meta.env.PROD) {
+	// TODO: better implementation than a setTimeout
 	setTimeout(() => {
 		showDetails.value = true;
-		gsap.fromTo(".details", { opacity: 0 }, { opacity: 1, duration: 1.5 });
+		gsap.fromTo(
+			".details",
+			{ opacity: 0 },
+			{
+				opacity: 1,
+				duration: 1.5,
+				stagger: {
+					each: 0.5,
+					from: "start"
+				}
+			}
+		);
 	}, typeSpeed * title.length + 400);
 } else {
 	showDetails.value = true;
@@ -50,6 +54,9 @@ watch(screenWidth, (newValue: number) => {
 
 <template>
 	<div ref="contentContainer" class="content-container">
+		<div></div>
+		<div></div>
+		<div></div>
 		<div></div>
 		<div></div>
 		<div></div>
@@ -84,7 +91,7 @@ watch(screenWidth, (newValue: number) => {
 			is self-taught. I have a dedicated page for my skills where others can learn more about
 			them(visit <router-link class="links" to="/skill">/skill</router-link>).
 		</div>
-		<div v-show="showDetails"></div>
-		<div v-show="showDetails"></div>
+		<div v-show="showDetails" class="details"></div>
+		<div v-show="showDetails" class="details"></div>
 	</div>
 </template>

@@ -16,7 +16,7 @@ onMounted(() => {
 const isSemiPressed = ref<boolean>(false);
 
 function inputHandler(e: KeyboardEvent) {
-	if (e.key === "i") {
+	if (e.key === "i" && !command.value) {
 		command.value = "Cannot make changes, 'modifiable' is off";	
 		return;
 	}
