@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Spacer from "../components/Spacer.vue";
 import { useLineNumber } from "../composables/lineNumber";
 const contentContainer = useLineNumber();
 </script>

@@ -1,16 +1,18 @@
 <script lang="ts" setup>
-import Spacer from "@/components/Spacer.vue";
-import { ref, watch } from "vue";
+import { ref, watch, onMounted } from "vue";
 import { useScreenSize } from "../composables/screenSize";
 import { useLineNumber } from "../composables/lineNumber";
-
+import { useStatusStore } from "../store/status";
 import gsap from "gsap";
 
 const contentContainer = useLineNumber();
 const typeSpeed = 50;
+const statusStore = useStatusStore();
 const title: string = "Welcome to my portfolio inspired by VIM.";
 const showDetails = ref<boolean>(false);
 const { width: screenWidth } = useScreenSize();
+
+statusStore.changePageName("xie")
 
 if (import.meta.env.PROD) {
 	// TODO: better implementation than a setTimeout
@@ -18,10 +20,14 @@ if (import.meta.env.PROD) {
 		showDetails.value = true;
 		gsap.fromTo(
 			".details",
-			{ opacity: 0 },
+			{ 
+				opacity: 0,
+				x: -100
+			},
 			{
 				opacity: 1,
 				duration: 1.5,
+				x: 0,
 				stagger: {
 					each: 0.5,
 					from: "start"
@@ -33,9 +39,26 @@ if (import.meta.env.PROD) {
 	showDetails.value = true;
 }
 
+onMounted(() => {
+	if (screenWidth.value < 610) {
+		for (const line of Array.from(contentContainer.value?.children || [])) {
+			if (line.classList.contains("centered-text")) {
+				line.classList.remove("centered-text");
+				(line as HTMLElement).dataset.needsCentered = "true";
+			}
+		}
+	} else {
+		for (const line of Array.from(contentContainer.value?.children || [])) {
+			if ((line as HTMLElement).dataset.needsCentered) {
+				line.classList.add("centered-text");
+			}
+		}
+	}
+})
+
 watch(screenWidth, (newValue: number) => {
 	// check if the screen is too small to show the details
-	if (newValue < 480) {
+	if (newValue < 610) {
 		for (const line of Array.from(contentContainer.value?.children || [])) {
 			if (line.classList.contains("centered-text")) {
 				line.classList.remove("centered-text");

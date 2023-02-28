@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { useRoute } from "vue-router";
 import { useLineNumber } from "../composables/lineNumber";
 import archLogo from "@/assets/archlinux.png";
+import { useStatusStore } from "../store/status";
 
 const contentContainer = useLineNumber();
-// const route = useRoute();
+const statusStore = useStatusStore();
+
+statusStore.changePageName("skill")
 </script>
 
 <template>

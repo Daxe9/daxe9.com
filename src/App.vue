@@ -2,16 +2,23 @@
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useScreenSize } from "./composables/screenSize";
+import { useStatusStore } from "./store/status";
 
+const statusStore = useStatusStore();
 const mainContainer = ref<HTMLElement | null>(null);
 const command = ref<string>("");
 const mode = ref<string>("NORMAL");
 const { width: screenWidth } = useScreenSize();
 const router = useRouter();
+const pageName = ref<string>(statusStore.pageName);
 
 onMounted(() => {
 	mainContainer.value?.focus();
 });
+
+statusStore.$subscribe((_, state) => {
+ 	pageName.value = state.pageName;
+})
 
 const isSemiPressed = ref<boolean>(false);
 
@@ -62,7 +69,7 @@ function inputHandler(e: KeyboardEvent) {
 			<div class="status-bar">
 				<div class="status-text">{{ mode }}</div>
 				<div class="status-title">
-					<div>xie.txt</div>
+					<div>{{ pageName + ".txt" }}</div>
 					<div v-show="screenWidth > 610">Copyright © 2023 dev@daxe9.com</div>
 				</div>
 				<div class="status-text">100% ln:0 %:1</div>

@@ -1,22 +1,17 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
-import { setLineNumbers } from "../services/line-number";
 import { useRoute } from "vue-router";
+import { useStatusStore } from "../store/status";
+import { useLineNumber } from "../composables/lineNumber";
 
-const mainContainer = ref<HTMLElement | null>(null);
+const statusStore = useStatusStore();
+const contentContainer = useLineNumber();
 const route = useRoute();
 
-onMounted(() => {
-	const lines: HTMLCollection | undefined = mainContainer.value?.children;
-
-	if (!lines) return;
-
-	setLineNumbers(lines);
-});
+statusStore.changePageName("error");
 </script>
 
 <template>
-	<div ref="mainContainer" class="content-container">
+	<div ref="contentContainer" class="content-container">
 		<div></div>
 		<div></div>
 		<div></div>

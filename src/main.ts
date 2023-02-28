@@ -5,5 +5,8 @@ import App from "./App.vue";
 // @ts-ignore
 import VueWriter from "vue-writer";
 import Spacer from "./components/Spacer.vue";
+import { createPinia } from "pinia";
 
-createApp(App).use(router).use(VueWriter).component("Spacer", Spacer).mount("#app");
+const pinia = createPinia();
+
+createApp(App).use(router).use(pinia).use(VueWriter).component("Spacer", Spacer).mount("#app");
