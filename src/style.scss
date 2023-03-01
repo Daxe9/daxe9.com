@@ -1,5 +1,5 @@
 $primary: #000000;
-$text-color: #f6c177;
+$text-color: #b1b379;
 
 $status-bar-color: #3a3a3a;
 $status-bar-title-color: #91886e;
@@ -92,10 +92,6 @@ body {
 				margin: 0;
 			}
 
-			label {
-				display: none;
-			}
-
 			input[type="text"] {
 				background-color: $primary;
 				height: 100%;
@@ -160,6 +156,10 @@ span.line-number {
 
 .text-center {
 	text-align: center;
+}
+
+.bold {
+	font-weight: bold;
 }
 
 .biography {

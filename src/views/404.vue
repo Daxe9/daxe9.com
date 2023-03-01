@@ -2,6 +2,11 @@
 import { useRoute } from "vue-router";
 import { useStatusStore } from "../store/status";
 import { useLineNumber } from "../composables/lineNumber";
+import { useHead } from "unhead";
+
+useHead({
+	title: "😭"
+})
 
 const statusStore = useStatusStore();
 const contentContainer = useLineNumber();

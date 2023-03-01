@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 
 type Status = {
 	pageName: string;
-}
+};
 
 export const useStatusStore = defineStore("status", {
 	state: (): Status => ({
@@ -13,4 +13,4 @@ export const useStatusStore = defineStore("status", {
 			this.pageName = name;
 		}
 	}
-})
+});

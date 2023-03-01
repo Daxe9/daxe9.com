@@ -11,4 +11,10 @@ import { createHead } from "@vueuse/head";
 const pinia = createPinia();
 const head = createHead();
 
-createApp(App).use(head).use(router).use(pinia).use(VueWriter).component("Spacer", Spacer).mount("#app");
+createApp(App)
+	.use(head)
+	.use(router)
+	.use(pinia)
+	.use(VueWriter)
+	.component("Spacer", Spacer)
+	.mount("#app");

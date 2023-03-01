@@ -19,7 +19,7 @@ useHead({
 				"Davide Xie, Davide, Xie, davide xie, davide, xie, daxe9, Daxe9, daxe9.com, daxe9.github.io, github.com/Daxe9"
 		}
 	]
-})
+});
 
 const contentContainer = useLineNumber();
 const typeSpeed = 50;
@@ -27,8 +27,9 @@ const statusStore = useStatusStore();
 const title: string = "Welcome to my portfolio inspired by VIM.";
 const showDetails = ref<boolean>(false);
 const { width: screenWidth } = useScreenSize();
+const displayHelp = ref<boolean>(false);
 
-statusStore.changePageName("xie")
+statusStore.changePageName("xie");
 
 if (import.meta.env.PROD) {
 	// TODO: better implementation than a setTimeout
@@ -36,7 +37,7 @@ if (import.meta.env.PROD) {
 		showDetails.value = true;
 		gsap.fromTo(
 			".details",
-			{ 
+			{
 				opacity: 0,
 				x: -100
 			},
@@ -70,7 +71,7 @@ onMounted(() => {
 			}
 		}
 	}
-})
+});
 
 watch(screenWidth, (newValue: number) => {
 	// check if the screen is too small to show the details
@@ -131,6 +132,12 @@ watch(screenWidth, (newValue: number) => {
 			them(visit <router-link class="links" to="/skill">/skill</router-link>).
 		</div>
 		<div v-show="showDetails" class="details"></div>
+		<div v-show="showDetails" class="details"></div>
+		<div v-show="showDetails" class="details bold centered-text">
+			<div>
+				<p @click="displayHelp = !displayHelp">{{ displayHelp ? "no help for you" : "[help]" }}</p>
+			</div>
+		</div>
 		<div v-show="showDetails" class="details"></div>
 	</div>
 </template>

@@ -13,6 +13,6 @@ export function useScreenSize() {
 
 	return {
 		width,
-		height,
+		height
 	};
 }

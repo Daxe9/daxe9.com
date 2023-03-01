@@ -11,8 +11,7 @@ useHead({
 		},
 		{
 			name: "keywords",
-			content:
-				"Davide Xie Contact, Daxe9 Contact"
+			content: "Davide Xie Contact, Daxe9 Contact"
 		}
 	]
 });
@@ -20,7 +19,7 @@ const contentContainer = useLineNumber();
 </script>
 
 <template>
-	<div ref="contentContainer">
+	<div ref="contentContainer" class="content-container">
 		<div></div>
 		<div></div>
 		<div></div>
@@ -46,7 +45,18 @@ const contentContainer = useLineNumber();
 			>
 		</div>
 		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div>
+			<Spacer />
+			<p>
+				TIPS: try out this command :/ or
+				<router-link to="/" class="links">simply click me</router-link>
+			</p>
+		</div>
 	</div>
 </template>
 
-<style scoped></style>
+<style></style>
