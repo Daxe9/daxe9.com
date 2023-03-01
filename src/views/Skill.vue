@@ -2,6 +2,22 @@
 import { useLineNumber } from "../composables/lineNumber";
 import archLogo from "@/assets/archlinux.png";
 import { useStatusStore } from "../store/status";
+import { useHead } from "unhead";
+
+useHead({
+	title: "Skill",
+	meta: [
+		{
+			name: "description",
+			content: "Those are the technologies I enjoy using and learning about."
+		},
+		{
+			name: "keywords",
+			content:
+				"Davide Xie Skill, Daxe9 Skill"
+		}
+	]
+});
 
 const contentContainer = useLineNumber();
 const statusStore = useStatusStore();

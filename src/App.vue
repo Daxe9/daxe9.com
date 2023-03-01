@@ -3,6 +3,7 @@ import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useScreenSize } from "./composables/screenSize";
 import { useStatusStore } from "./store/status";
+import { useHead } from "unhead";
 
 const statusStore = useStatusStore();
 const mainContainer = ref<HTMLElement | null>(null);
@@ -12,19 +13,38 @@ const { width: screenWidth } = useScreenSize();
 const router = useRouter();
 const pageName = ref<string>(statusStore.pageName);
 
+useHead({
+	titleTemplate: "%s | Davide Xie",
+	meta: [
+		{
+			name: "description",
+			content: "Welcome to my website! Hope you will enjoy it!"
+		},
+		{
+			name: "keywords",
+			content:
+				"Davide Xie, Davide, Xie, daxe9, Daxe9, daxe9.com, daxe9.github.io, github.com/Daxe9"
+		}
+	]
+});
+
 onMounted(() => {
+	// focus on the input element
 	mainContainer.value?.focus();
 });
 
+// subscribe to the pageName changes
 statusStore.$subscribe((_, state) => {
- 	pageName.value = state.pageName;
-})
+	pageName.value = state.pageName;
+});
 
+// check whether the semicolon is pressed for page redirecting
 const isSemiPressed = ref<boolean>(false);
 
+// handle the keyboard input
 function inputHandler(e: KeyboardEvent) {
 	if (e.key === "i" && !command.value) {
-		command.value = "Cannot make changes, 'modifiable' is off";	
+		command.value = "Cannot make changes, 'modifiable' is off";
 		return;
 	}
 
@@ -51,7 +71,7 @@ function inputHandler(e: KeyboardEvent) {
 		isSemiPressed.value = false;
 
 		mode.value = "NORMAL";
-		
+
 		// redirect to selected page
 		// remove the first character ":" and remove the whitespaces, then go to the page
 		router.push(command.value.slice(1).replace(/\s/g, ""));

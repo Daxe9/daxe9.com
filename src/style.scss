@@ -9,12 +9,14 @@ $status-bar-text-color: #fcc69f;
 @font-face {
 	font-family: "JetBrains Mono";
 	src: url("./assets/fonts/JetBrainsMono-Regular.ttf");
+	font-display: swap;
 }
 
 @font-face {
 	font-family: "JetBrains Mono";
 	src: url("./assets/fonts/JetBrainsMono-Bold.ttf");
 	font-weight: bold;
+	font-display: swap;
 }
 
 body {

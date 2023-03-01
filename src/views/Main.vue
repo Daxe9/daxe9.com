@@ -4,6 +4,22 @@ import { useScreenSize } from "../composables/screenSize";
 import { useLineNumber } from "../composables/lineNumber";
 import { useStatusStore } from "../store/status";
 import gsap from "gsap";
+import { useHead } from "unhead";
+
+useHead({
+	title: "Welcome",
+	meta: [
+		{
+			name: "description",
+			content: "Welcome to my website! Hope you will enjoy it!"
+		},
+		{
+			name: "keywords",
+			content:
+				"Davide Xie, Davide, Xie, davide xie, davide, xie, daxe9, Daxe9, daxe9.com, daxe9.github.io, github.com/Daxe9"
+		}
+	]
+})
 
 const contentContainer = useLineNumber();
 const typeSpeed = 50;

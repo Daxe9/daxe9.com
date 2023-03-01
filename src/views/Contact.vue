@@ -1,5 +1,21 @@
 <script setup lang="ts">
 import { useLineNumber } from "../composables/lineNumber";
+import { useHead } from "unhead";
+
+useHead({
+	title: "Contact",
+	meta: [
+		{
+			name: "description",
+			content: "Get in touch with me."
+		},
+		{
+			name: "keywords",
+			content:
+				"Davide Xie Contact, Daxe9 Contact"
+		}
+	]
+});
 const contentContainer = useLineNumber();
 </script>
 
