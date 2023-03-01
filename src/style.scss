@@ -1,5 +1,5 @@
 $primary: #000000;
-$text-color: #abad6e;
+$text-color: #f6c177;
 
 $status-bar-color: #3a3a3a;
 $status-bar-title-color: #91886e;
@@ -90,6 +90,10 @@ body {
 			flex-grow: 1;
 			* {
 				margin: 0;
+			}
+
+			label {
+				display: none;
 			}
 
 			input[type="text"] {

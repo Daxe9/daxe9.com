@@ -95,7 +95,8 @@ function inputHandler(e: KeyboardEvent) {
 				<div class="status-text">100% ln:0 %:1</div>
 			</div>
 			<div class="command-line">
-				<input type="text" v-model="command" disabled />
+				<label for="input-bar"></label>
+				<input type="text" id="input-bar" name="input-bar" v-model="command" disabled />
 			</div>
 		</div>
 	</div>
