@@ -1,16 +1,20 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 import { useScreenSize } from "./composables/screenSize";
 import { useStatusStore } from "./store/status";
+import { useSnakeGameStore } from "./store/snakeGame";
+import { Direction } from "./services/snakeGame";
 import { useHead } from "unhead";
 
 const statusStore = useStatusStore();
+const snakeGameStore = useSnakeGameStore();
 const mainContainer = ref<HTMLElement | null>(null);
 const command = ref<string>("");
 const mode = ref<string>("NORMAL");
 const { width: screenWidth } = useScreenSize();
 const router = useRouter();
+const route = useRoute();
 const pageName = ref<string>(statusStore.pageName);
 
 useHead({
@@ -43,6 +47,33 @@ const isSemiPressed = ref<boolean>(false);
 
 // handle the keyboard input
 function inputHandler(e: KeyboardEvent) {
+	// handle game input
+	if (snakeGameStore.hasReadRules) {
+		switch (e.key) {
+			case "h":
+				if (snakeGameStore.input === Direction.RIGHT) return;	
+				snakeGameStore.setInput(Direction.LEFT);
+				break;
+			case "j":
+				if (snakeGameStore.input === Direction.UP) return;
+				snakeGameStore.setInput(Direction.DOWN);
+				break;
+			case "k":
+				if (snakeGameStore.input === Direction.DOWN) return;
+				snakeGameStore.setInput(Direction.UP);
+				break;
+			case "l":
+				if (snakeGameStore.input === Direction.LEFT) return;
+				snakeGameStore.setInput(Direction.RIGHT);
+				break;
+			default:
+				// if the input is not a valid direction, do nothing
+				break;
+		}
+		return;
+	}
+	
+
 	if (e.key === "i" && !command.value) {
 		command.value = "Cannot make changes, 'modifiable' is off";
 		return;
@@ -71,10 +102,12 @@ function inputHandler(e: KeyboardEvent) {
 		isSemiPressed.value = false;
 
 		mode.value = "NORMAL";
+	
+		const pathName = command.value.slice(1).replace(/\s/g, "");
 
 		// redirect to selected page
 		// remove the first character ":" and remove the whitespaces, then go to the page
-		router.push(command.value.slice(1).replace(/\s/g, ""));
+		router.push(pathName);
 		return;
 	}
 }

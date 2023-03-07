@@ -18,6 +18,22 @@ const routes = [
 		component: () => import("../views/Contact.vue")
 	},
 	{
+		path: "/snake",
+		name: "Snake",
+		children: [
+			{
+				path: "",
+				name: "SnakeGameRules",
+				component: () => import("../views/snakeGame/SnakeGameRules.vue")
+			},
+			{
+				path: "game",
+				name: "SnakeGame",
+				component: () => import("../views/snakeGame/SnakeGame.vue")
+			}
+		]
+	},
+	{
 		path: "/:catchAll(.*)",
 		name: "NotFound",
 		component: () => import("../views/404.vue")

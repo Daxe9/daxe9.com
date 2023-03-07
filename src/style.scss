@@ -1,6 +1,6 @@
 $primary: #000000;
 $text-color: #b1b379;
-
+$rose: #ebbcba;
 $status-bar-color: #3a3a3a;
 $status-bar-title-color: #91886e;
 $status-bar-block-color: #949494;
@@ -170,6 +170,10 @@ span.line-number {
 	color: #f3a654;
 }
 
+.rose {
+	color: $rose
+}
+
 // modify typer writer's font color
 .title-writer {
 	span.typed {
@@ -184,4 +188,8 @@ span.line-number {
 	text-decoration: none;
 	font-weight: bold;
 	text-decoration: underline;
+}
+
+.pointer {
+	cursor: pointer;
 }
