@@ -59,17 +59,20 @@ function snakeGame(
 	const draw_field = function () {
 		context.fillStyle = FIELD_COLOR;
 		context.fillRect(0, 0, width, height);
-		// context.strokeStyle = GRID_COLOR;
-		// for (let i = 0; i <= height; i += CELL_SIZE) {
-		// 	context.moveTo(0, i);
-		// 	context.lineTo(width, i);
-		// 	context.stroke();
-		// }
-		// for (let i = 0; i <= width; i += CELL_SIZE) {
-		// 	context.moveTo(i, 0);
-		// 	context.lineTo(i, height);
-		// 	context.stroke();
-		// }
+		const displayGrid = false;
+		if (displayGrid) {
+			context.strokeStyle = GRID_COLOR;
+			for (let i = 0; i <= height; i += CELL_SIZE) {
+				context.moveTo(0, i);
+				context.lineTo(width, i);
+				context.stroke();
+			}
+			for (let i = 0; i <= width; i += CELL_SIZE) {
+				context.moveTo(i, 0);
+				context.lineTo(i, height);
+				context.stroke();
+			}
+		}
 	};
 
 	const draw_food = function () {
@@ -79,14 +82,13 @@ function snakeGame(
 		context.arc(food.x + CELL_SIZE / 2, food.y + CELL_SIZE / 2, CELL_SIZE / 2, 0, 2 * Math.PI);
 		context.fill();
 		context.closePath();
-
 	};
 
 	const draw_snake = function (dir: Direction | null) {
 		context.fillStyle = SNAKE_COLOR;
 		// context.strokeStyle = "#000000";
 		if (!food) return;
-		
+
 		// draw half circle for the head
 		let startAngle: number;
 		let endAngle: number;
@@ -96,10 +98,10 @@ function snakeGame(
 		let startHeight: number = snake[0].y;
 
 		switch (dir) {
-			case Direction.LEFT: 
+			case Direction.LEFT:
 				startAngle = 0.5 * Math.PI;
 				endAngle = 1.5 * Math.PI;
-				toFilledWidth =  CELL_SIZE / 2;
+				toFilledWidth = CELL_SIZE / 2;
 				toFilledHeight = CELL_SIZE;
 				startWidth += toFilledWidth;
 				break;
@@ -118,17 +120,23 @@ function snakeGame(
 				toFilledWidth = CELL_SIZE;
 				toFilledHeight = CELL_SIZE / 2;
 				break;
-			case Direction.RIGHT: 
-			default: 
+			case Direction.RIGHT:
+			default:
 				startAngle = 1.5 * Math.PI;
 				endAngle = 0.5 * Math.PI;
 				toFilledWidth = CELL_SIZE / 2;
 				toFilledHeight = CELL_SIZE;
 				break;
-		} 
+		}
 
 		context.beginPath();
-		context.arc(snake[0].x + CELL_SIZE / 2, snake[0].y + CELL_SIZE / 2, CELL_SIZE / 2, startAngle, endAngle);
+		context.arc(
+			snake[0].x + CELL_SIZE / 2,
+			snake[0].y + CELL_SIZE / 2,
+			CELL_SIZE / 2,
+			startAngle,
+			endAngle
+		);
 		context.fillRect(startWidth, startHeight, toFilledWidth, toFilledHeight);
 		context.fill();
 		context.closePath();
@@ -154,6 +162,54 @@ function snakeGame(
 		speedCoeff = 1;
 
 		spawn_food();
+	};
+
+	const endGame = () => {
+		function wrapText(
+			context: CanvasRenderingContext2D,
+			text: string,
+			x: number,
+			y: number,
+			maxWidth: number,
+			lineHeight: number
+		) {
+			let words = text.split(" ");
+			let line = "";
+
+			for (let n = 0; n < words.length; n++) {
+				let testLine = line + words[n] + " ";
+				let metrics = context.measureText(testLine);
+				let testWidth = metrics.width;
+				if (testWidth > maxWidth && n > 0) {
+					context.fillText(line, x, y);
+					line = words[n] + " ";
+					y += lineHeight;
+				} else {
+					line = testLine;
+				}
+			}
+			context.fillText(line, x, y);
+		}
+		const title: string = "Game Over!";
+		const subtitle: string = "Press any key to restart game"
+		let fontSize: number = 50;
+		const subTitleFontSize: number = 20;
+
+		context.fillStyle = GRID_COLOR;
+
+		// Set the text properties
+		context.font = `${fontSize}px Arial`;
+		context.textAlign = "center";
+		context.textBaseline = "middle";
+		const x = width / 2;
+		let y = height / 2;
+
+		context.fillText(title, x, y);
+		context.font = `${subTitleFontSize}px Arial`;
+		y += fontSize;
+		context.fillText(`Score: ${score}`, x, y);
+		y += fontSize;
+		context.fillText(subtitle, x, y);
 	};
 
 	const isContact = function (fieldObj: Position): boolean {
@@ -202,8 +258,8 @@ function snakeGame(
 				break;
 		}
 		if (!isValid(newPos) || isContact(newPos)) {
-			alert("Game over!\nYour score: " + score);
-			init();
+			endGame();
+			return;
 		} else if (food && newPos.x === food.x && newPos.y === food.y) {
 			score++;
 			if (score % 5 === 0) {
