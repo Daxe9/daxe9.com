@@ -27,7 +27,6 @@ const statusStore = useStatusStore();
 const title: string = "Welcome to my portfolio inspired by VIM.";
 const showDetails = ref<boolean>(false);
 const { width: screenWidth } = useScreenSize();
-const displayHelp = ref<boolean>(false);
 
 statusStore.changePageName("xie");
 
@@ -135,7 +134,7 @@ watch(screenWidth, (newValue: number) => {
 		<div v-show="showDetails" class="details"></div>
 		<div v-show="showDetails" class="details bold centered-text">
 			<div>
-				<p @click="displayHelp = !displayHelp">{{ displayHelp ? "no help for you" : "[help]" }}</p>
+				<a href="/help" class="links">[help]</a>
 			</div>
 		</div>
 		<div v-show="showDetails" class="details"></div>

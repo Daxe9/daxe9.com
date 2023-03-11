@@ -14,7 +14,6 @@ const command = ref<string>("");
 const mode = ref<string>("NORMAL");
 const { width: screenWidth } = useScreenSize();
 const router = useRouter();
-const route = useRoute();
 const pageName = ref<string>(statusStore.pageName);
 
 useHead({

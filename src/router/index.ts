@@ -18,6 +18,11 @@ export const routes = [
 		component: () => import("../views/Contact.vue")
 	},
 	{
+		path: "/roadmap",
+		name: "Roadmap",
+		component: () => import("../views/Roadmap.vue")
+	},
+	{
 		path: "/snake",
 		name: "Snake",
 		children: [
@@ -32,6 +37,11 @@ export const routes = [
 				component: () => import("../views/snakeGame/SnakeGame.vue")
 			}
 		]
+	},
+	{
+		path: "/help",
+		name: "Help",
+		component: () => import("../views/Help.vue")
 	},
 	{
 		path: "/:catchAll(.*)",

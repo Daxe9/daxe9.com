@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import { useLineNumber } from "../../composables/lineNumber";
 import { useSnakeGameStore } from "../../store/snakeGame";
+import { useStatusStore } from "../../store/status";
 import { useRouter} from "vue-router";
 
 const snakeGameStore = useSnakeGameStore();
+const statusStore = useStatusStore();
 const contentContainer = useLineNumber();
 const router = useRouter()
 
 snakeGameStore.readRules();
+statusStore.changePageName("snakegamerules")
 
 
 async function goToGamePage() {

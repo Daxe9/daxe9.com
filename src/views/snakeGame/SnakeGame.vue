@@ -6,12 +6,14 @@ import { onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { snakeGame } from "../../services/snakeGame";
 import { useSnakeGameStore } from "../../store/snakeGame";
+import { useStatusStore } from "../../store/status";
 
 useHead({
 	title: "Snake Game"
 });
 
 const router = useRouter();
+const statusStore = useStatusStore();
 const snakeGameStore = useSnakeGameStore();
 const contentContainer: Ref<HTMLElement | null> = ref(null);
 const gameBoard: Ref<HTMLCanvasElement | null> = ref(null);
@@ -21,6 +23,8 @@ let gameBoardContext: CanvasRenderingContext2D | null | undefined = null;
 
 let lineHeight: number = 0;
 let timeout: number = 0;
+
+statusStore.changePageName("snakegame");
 
 snakeGameStore.$subscribe((_, state) => {
 	if (state.canPlay) {
