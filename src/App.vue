@@ -45,8 +45,12 @@ statusStore.$subscribe((_, state) => {
 // check whether the semicolon is pressed for page redirecting
 const isSemiPressed = ref<boolean>(false);
 
-// handle the keyboard input
-function inputHandler(e: KeyboardEvent) {
+function gameInput(e: KeyboardEvent) {
+	// NOTE: do not change this to !snakeGameStore.canPlay
+	if (snakeGameStore.canPlay === false) {
+		snakeGameStore.canPlay = true;	
+		return;
+	}
 	// handle game input
 	if (snakeGameStore.hasReadRules) {
 		switch (e.key) {
@@ -72,7 +76,12 @@ function inputHandler(e: KeyboardEvent) {
 		}
 		return;
 	}
-	
+}
+
+
+// handle the keyboard input
+function inputHandler(e: KeyboardEvent) {
+	gameInput(e);	
 
 	if (e.key === "i" && !command.value) {
 		command.value = "Cannot make changes, 'modifiable' is off";

@@ -165,31 +165,6 @@ function snakeGame(
 	};
 
 	const endGame = () => {
-		function wrapText(
-			context: CanvasRenderingContext2D,
-			text: string,
-			x: number,
-			y: number,
-			maxWidth: number,
-			lineHeight: number
-		) {
-			let words = text.split(" ");
-			let line = "";
-
-			for (let n = 0; n < words.length; n++) {
-				let testLine = line + words[n] + " ";
-				let metrics = context.measureText(testLine);
-				let testWidth = metrics.width;
-				if (testWidth > maxWidth && n > 0) {
-					context.fillText(line, x, y);
-					line = words[n] + " ";
-					y += lineHeight;
-				} else {
-					line = testLine;
-				}
-			}
-			context.fillText(line, x, y);
-		}
 		const title: string = "Game Over!";
 		const subtitle: string = "Press any key to restart game"
 		let fontSize: number = 50;
@@ -210,6 +185,7 @@ function snakeGame(
 		context.fillText(`Score: ${score}`, x, y);
 		y += fontSize;
 		context.fillText(subtitle, x, y);
+		snakeGameStore.canPlay = false;
 	};
 
 	const isContact = function (fieldObj: Position): boolean {
@@ -219,7 +195,7 @@ function snakeGame(
 		return false;
 	};
 
-	const isValid = function (pos: Position) {
+	const isValid = function (pos: Position): boolean {
 		return 0 <= pos.x && pos.x < width && 0 <= pos.y && pos.y < height;
 	};
 
@@ -278,7 +254,7 @@ function snakeGame(
 			});
 		}
 		draw(dir);
-		setTimeout(step, 180 / speedCoeff);
+		setTimeout(step, 150 / speedCoeff);
 	};
 
 	init();

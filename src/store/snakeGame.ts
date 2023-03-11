@@ -3,13 +3,16 @@ import { Direction } from '../services/snakeGame'
 
 type SnakeGameState = {
 	input: Direction | null
-	hasReadRules: boolean
+	hasReadRules: boolean,
+	canPlay: boolean | null
+
 }
 
 export const useSnakeGameStore = defineStore("snakeGame", {
 	state: (): SnakeGameState => ({
 		input: null,
-		hasReadRules: false
+		hasReadRules: false,
+		canPlay: null
 	}),
 	actions: {
 		setInput(direction: Direction): void {
@@ -20,7 +23,6 @@ export const useSnakeGameStore = defineStore("snakeGame", {
 		
 		readRules(): void {
 			this.hasReadRules = true
-		}
+		},
 	}
-
 })

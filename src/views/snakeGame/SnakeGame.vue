@@ -19,9 +19,19 @@ const gameBoardWidth: Ref<number> = ref<number>(0);
 const gameBoardHeight: Ref<number> = ref<number>(0);
 let gameBoardContext: CanvasRenderingContext2D | null | undefined = null;
 
-
 let lineHeight: number = 0;
 let timeout: number = 0;
+
+snakeGameStore.$subscribe((_, state) => {
+	if (state.canPlay) {
+		if (!gameBoardContext) {
+			router.push("/");
+			return;
+		}
+		snakeGame(gameBoardContext, lineHeight, gameBoardWidth.value, gameBoardHeight.value);
+		state.canPlay = null;
+	}
+});
 
 window.addEventListener("resize", () => {
 	// debounce
@@ -95,11 +105,13 @@ onMounted(() => {
 	snakeGame(gameBoardContext, lineHeight, gameBoardWidth.value, gameBoardHeight.value);
 });
 
+
 </script>
 
 <template>
 	<div class="game-container">
-		<div ref="contentContainer" class="content-container"></div>
+		<div ref="contentContainer" class="content-container">
+		</div>
 		<div class="game-board-container">
 			<canvas ref="gameBoard" id="game-board"></canvas>
 		</div>
