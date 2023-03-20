@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, Ref } from "vue";
-import { setLineNumbers } from "../../services/line-number";
+import { setLineNumbers } from "../../services/lineNumber";
 import { useHead } from "unhead";
 import { onMounted } from "vue";
 import { useRouter } from "vue-router";
