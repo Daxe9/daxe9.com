@@ -1,12 +1,11 @@
-import { defineStore } from 'pinia'
-import { Direction } from '../services/snakeGame'
+import { defineStore } from "pinia";
+import { Direction } from "../services/snakeGame";
 
 type SnakeGameState = {
-	input: Direction | null
-	hasReadRules: boolean,
-	canPlay: boolean | null
-
-}
+	input: Direction | null;
+	hasReadRules: boolean;
+	canPlay: boolean | null;
+};
 
 export const useSnakeGameStore = defineStore("snakeGame", {
 	state: (): SnakeGameState => ({
@@ -18,11 +17,11 @@ export const useSnakeGameStore = defineStore("snakeGame", {
 		setInput(direction: Direction): void {
 			// if it's not started, don't do anything
 			if (!this.hasReadRules) return;
-			this.input = direction
+			this.input = direction;
 		},
-		
+
 		readRules(): void {
-			this.hasReadRules = true
-		},
+			this.hasReadRules = true;
+		}
 	}
-})
+});

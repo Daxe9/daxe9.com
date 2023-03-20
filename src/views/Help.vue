@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { useLineNumber } from '../composables/lineNumber';
-import { useStatusStore } from '../store/status';
-import { routes } from '../router';
+import { useLineNumber } from "../composables/lineNumber";
+import { useStatusStore } from "../store/status";
+import { routes } from "../router";
 
 const contentContainer = useLineNumber();
 const statusStore = useStatusStore();
 
-statusStore.changePageName('help');
+statusStore.changePageName("help");
 
 routes.pop();
 </script>
@@ -19,12 +19,9 @@ routes.pop();
 		<div></div>
 		<div><Spacer :space="4" />The following is a list of available page in my website!</div>
 		<div></div>
-		<div
-			v-for="route, i in routes"
-			:key="i"
-		>
-			<Spacer :space="4" /><a :href="route.path " class="links">{{ route.name }}</a>
-		</div>	
+		<div v-for="(route, i) in routes" :key="i">
+			<Spacer :space="4" /><a :href="route.path" class="links">{{ route.name }}</a>
+		</div>
 		<div></div>
 		<div></div>
 		<div>
@@ -36,6 +33,4 @@ routes.pop();
 	</div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

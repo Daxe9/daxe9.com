@@ -53,9 +53,8 @@ window.addEventListener("resize", () => {
 });
 
 onMounted(() => {
-
 	if (!snakeGameStore.hasReadRules) {
-		router.push({name: "SnakeGameRules"})
+		router.push({ name: "SnakeGameRules" });
 	}
 	// get html collections of all lines
 	let lines: HTMLCollection | undefined = contentContainer.value?.children;
@@ -103,19 +102,16 @@ onMounted(() => {
 
 	gameBoard.value!.width = width;
 	gameBoard.value!.height = height;
-	
+
 	if (!gameBoardContext) return;
 
 	snakeGame(gameBoardContext, lineHeight, gameBoardWidth.value, gameBoardHeight.value);
 });
-
-
 </script>
 
 <template>
 	<div class="game-container">
-		<div ref="contentContainer" class="content-container">
-		</div>
+		<div ref="contentContainer" class="content-container"></div>
 		<div class="game-board-container">
 			<canvas ref="gameBoard" id="game-board"></canvas>
 		</div>

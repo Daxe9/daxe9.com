@@ -2,16 +2,15 @@
 import { useLineNumber } from "../../composables/lineNumber";
 import { useSnakeGameStore } from "../../store/snakeGame";
 import { useStatusStore } from "../../store/status";
-import { useRouter} from "vue-router";
+import { useRouter } from "vue-router";
 
 const snakeGameStore = useSnakeGameStore();
 const statusStore = useStatusStore();
 const contentContainer = useLineNumber();
-const router = useRouter()
+const router = useRouter();
 
 snakeGameStore.readRules();
-statusStore.changePageName("snakegamerules")
-
+statusStore.changePageName("snakegamerules");
 
 async function goToGamePage() {
 	await router.push({ name: "SnakeGame" });
@@ -32,7 +31,9 @@ async function goToGamePage() {
 		<div></div>
 		<div><Spacer :space="4" />for every five points you collect, it will be quicker</div>
 		<div></div>
-		<div><Spacer :space="4" /><span @click="goToGamePage" class="links pointer">THE GAME</span></div>
+		<div>
+			<Spacer :space="4" /><span @click="goToGamePage" class="links pointer">THE GAME</span>
+		</div>
 		<div></div>
 	</div>
 </template>

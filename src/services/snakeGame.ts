@@ -166,7 +166,7 @@ function snakeGame(
 
 	const endGame = () => {
 		const title: string = "Game Over!";
-		const subtitle: string = "Press any key to restart game"
+		const subtitle: string = "Press any key to restart game";
 		let fontSize: number = 50;
 		const subTitleFontSize: number = 20;
 

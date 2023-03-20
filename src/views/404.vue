@@ -6,7 +6,7 @@ import { useHead } from "unhead";
 
 useHead({
 	title: "😭"
-})
+});
 
 const statusStore = useStatusStore();
 const contentContainer = useLineNumber();

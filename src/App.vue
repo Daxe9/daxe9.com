@@ -47,14 +47,14 @@ const isSemiPressed = ref<boolean>(false);
 function gameInput(e: KeyboardEvent) {
 	// NOTE: do not change this to !snakeGameStore.canPlay
 	if (snakeGameStore.canPlay === false) {
-		snakeGameStore.canPlay = true;	
+		snakeGameStore.canPlay = true;
 		return;
 	}
 	// handle game input
 	if (snakeGameStore.hasReadRules) {
 		switch (e.key) {
 			case "h":
-				if (snakeGameStore.input === Direction.RIGHT) return;	
+				if (snakeGameStore.input === Direction.RIGHT) return;
 				snakeGameStore.setInput(Direction.LEFT);
 				break;
 			case "j":
@@ -77,10 +77,9 @@ function gameInput(e: KeyboardEvent) {
 	}
 }
 
-
 // handle the keyboard input
 function inputHandler(e: KeyboardEvent) {
-	gameInput(e);	
+	gameInput(e);
 
 	if (e.key === "i" && !command.value) {
 		command.value = "Cannot make changes, 'modifiable' is off";
@@ -110,7 +109,7 @@ function inputHandler(e: KeyboardEvent) {
 		isSemiPressed.value = false;
 
 		mode.value = "NORMAL";
-	
+
 		const pathName = command.value.slice(1).replace(/\s/g, "");
 
 		// redirect to selected page
