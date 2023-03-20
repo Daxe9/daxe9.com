@@ -39,6 +39,10 @@ type Todo = {
 
 const todos: Todo[] = [
 	{
+		event: "Normal mode",
+		description: "Add normal mode navigation"
+	},
+	{
 		event: "Visual block mode",
 		description: "Add ability to select line or multiple lines"
 	},
