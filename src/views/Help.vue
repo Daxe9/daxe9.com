@@ -17,7 +17,7 @@ routes.pop();
 		<div></div>
 		<div></div>
 		<div></div>
-		<div><Spacer :space="4" />The following is a list of available page in my website!</div>
+		<div><Spacer :space="4" />The following is a list of available pages in my website!</div>
 		<div></div>
 		<div v-for="(route, i) in routes" :key="i">
 			<Spacer :space="4" /><a :href="route.path" class="links">{{ route.name }}</a>

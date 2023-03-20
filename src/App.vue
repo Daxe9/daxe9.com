@@ -7,11 +7,17 @@ import { useSnakeGameStore } from "./store/snakeGame";
 import { Direction } from "./services/snakeGame";
 import { useHead } from "unhead";
 
+enum Mode {
+	NORMAL = "NORMAL",
+	COMMAND = "COMMAND",
+	VISUALLINE = "VISUAL-LINE"
+}
+
 const statusStore = useStatusStore();
 const snakeGameStore = useSnakeGameStore();
 const mainContainer = ref<HTMLElement | null>(null);
 const command = ref<string>("");
-const mode = ref<string>("NORMAL");
+const mode = ref<Mode>(Mode.NORMAL);
 const { width: screenWidth } = useScreenSize();
 const router = useRouter();
 const pageName = ref<string>(statusStore.pageName);
@@ -81,6 +87,7 @@ function gameInput(e: KeyboardEvent) {
 function inputHandler(e: KeyboardEvent) {
 	gameInput(e);
 
+	// handler insert mode
 	if (e.key === "i" && !command.value) {
 		command.value = "Cannot make changes, 'modifiable' is off";
 		return;
@@ -90,7 +97,7 @@ function inputHandler(e: KeyboardEvent) {
 	// change the mode to COMMAND and clear the remain command
 	if (e.key === ":") {
 		isSemiPressed.value = true;
-		mode.value = "COMMAND";
+		mode.value = Mode.COMMAND;
 		command.value = ":";
 	} else {
 		// check if the pressed key is not a special key, e.g. shift ctrl alt
@@ -108,12 +115,12 @@ function inputHandler(e: KeyboardEvent) {
 	if (e.key === "Enter" || command.value === "") {
 		isSemiPressed.value = false;
 
-		mode.value = "NORMAL";
+		mode.value = Mode.NORMAL;
 
+		// remove the first character ":" and remove whitespaces
 		const pathName = command.value.slice(1).replace(/\s/g, "");
 
 		// redirect to selected page
-		// remove the first character ":" and remove the whitespaces, then go to the page
 		router.push(pathName);
 		return;
 	}
