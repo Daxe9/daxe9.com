@@ -12,7 +12,7 @@ const statusStore = useStatusStore();
 const contentContainer = useLineNumber();
 const route = useRoute();
 
-statusStore.changePageName("error");
+statusStore.changePageName("404");
 </script>
 
 <template>

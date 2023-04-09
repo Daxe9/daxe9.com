@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import { useRouter, useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 import { useScreenSize } from "./composables/screenSize";
 import { useStatusStore } from "./store/status";
 import { useSnakeGameStore } from "./store/snakeGame";
@@ -111,7 +111,7 @@ function inputHandler(e: KeyboardEvent) {
 		}
 	}
 
-	// check whether enter is pressed or there're no characters remain
+	// check whether enter is pressed or there are no characters remain
 	if (e.key === "Enter" || command.value === "") {
 		isSemiPressed.value = false;
 

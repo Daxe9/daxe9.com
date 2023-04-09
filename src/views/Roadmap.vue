@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import { useLineNumber } from "../composables/lineNumber";
 import { useStatusStore } from "../store/status";
+import { useRoute } from "vue-router";
 
 const contentContainer = useLineNumber();
 const statusStore = useStatusStore();
+const route = useRoute();
+
+let issues: any = route.meta.issues ?? []
+issues = issues.reverse();
 
 statusStore.changePageName("roadmap");
+
 
 type RoadmapRoute = {
 	event: string;
@@ -31,34 +37,6 @@ const roadmap: RoadmapRoute[] = [
 			"Somehow my professor found out about this project and that made me want to continue it"
 	}
 ];
-
-type Todo = {
-	event: string;
-	description: string;
-};
-
-const todos: Todo[] = [
-	{
-		event: "Normal mode",
-		description: "Add normal mode navigation"
-	},
-	{
-		event: "Visual block mode",
-		description: "Add ability to select line or multiple lines"
-	},
-	{
-		event: "Insert mode",
-		description: "Add ability to insert text"
-	},
-	{
-		event: "Settings",
-		description: "Add ability to change settings"
-	},
-	{
-		event: "LiveCycle",
-		description: "Add livecycle(livecycle.io)"
-	}
-];
 </script>
 
 <template>
@@ -77,9 +55,9 @@ const todos: Todo[] = [
 		<div></div>
 		<div><Spacer :space="4" />TODOs</div>
 		<div></div>
-		<div v-for="(route, i) in todos" :key="i">
-			<Spacer :space="4" /><span class="my-fucking-name">{{ route.event }}</span>
-			{{ route.description ? "-> " + route.description : "" }}
+		<div v-for="(issue, i) in issues" :key="i">
+			<Spacer :space="4" /><span class="my-fucking-name">{{ issue.title }}</span>
+			{{ issue.body ? "-> " + issue.body : "" }}
 		</div>
 		<div></div>
 		<div></div>

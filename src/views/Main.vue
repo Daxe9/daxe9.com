@@ -55,8 +55,9 @@ if (import.meta.env.PROD) {
 	showDetails.value = true;
 }
 
-onMounted(() => {
-	if (screenWidth.value < 610) {
+function screenWidthChanged(value: number) {
+	// check if the screen is too small to show the details
+	if (value < 610) {
 		for (const line of Array.from(contentContainer.value?.children || [])) {
 			if (line.classList.contains("centered-text")) {
 				line.classList.remove("centered-text");
@@ -70,24 +71,14 @@ onMounted(() => {
 			}
 		}
 	}
+}
+
+onMounted(() => {
+	screenWidthChanged(screenWidth.value);
 });
 
 watch(screenWidth, (newValue: number) => {
-	// check if the screen is too small to show the details
-	if (newValue < 610) {
-		for (const line of Array.from(contentContainer.value?.children || [])) {
-			if (line.classList.contains("centered-text")) {
-				line.classList.remove("centered-text");
-				(line as HTMLElement).dataset.needsCentered = "true";
-			}
-		}
-	} else {
-		for (const line of Array.from(contentContainer.value?.children || [])) {
-			if ((line as HTMLElement).dataset.needsCentered) {
-				line.classList.add("centered-text");
-			}
-		}
-	}
+	screenWidthChanged(newValue);
 });
 </script>
 
@@ -116,27 +107,26 @@ watch(screenWidth, (newValue: number) => {
 				<p>type `:[path of the page]`</p>
 			</div>
 		</div>
+		<div v-show="showDetails" class="details bold centered-text">
+			<div>
+				<a href="/help" class="links">:help</a>
+			</div>
+		</div>
 		<div v-show="showDetails"></div>
 		<div v-show="showDetails"></div>
-		<div v-show="showDetails" class="details"><Spacer /> Greetings!</div>
+		<div v-show="showDetails"></div>
+		<div v-show="showDetails" class="details"><Spacer />Greetings!</div>
 		<div v-show="showDetails" class="details">
-			<Spacer />
 			I am <span class="my-fucking-name">Davide Xie</span>, an 18-year-old high school student
 			from Florence.
 		</div>
 		<div v-show="showDetails" class="details">
-			<Spacer />
 			Currently, I am taking a pre computer-science course at A. Meucci, but most of knowledge
 			is self-taught. I have a dedicated page for my skills where others can learn more about
 			them(visit <router-link class="links" to="/skill">/skill</router-link>).
 		</div>
 		<div v-show="showDetails" class="details"></div>
 		<div v-show="showDetails" class="details"></div>
-		<div v-show="showDetails" class="details bold centered-text">
-			<div>
-				<a href="/help" class="links">[help]</a>
-			</div>
-		</div>
 		<div v-show="showDetails" class="details"></div>
 	</div>
 </template>
