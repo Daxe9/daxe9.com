@@ -9,7 +9,7 @@ const statusStore = useStatusStore();
 const errorStore = useErrorStore();
 
 const message = errorStore.message || "Something went wrong";
-console.log(message)
+console.log(message);
 
 useHead({
 	title: "😭"
@@ -37,6 +37,7 @@ statusStore.changePageName("error");
 			<p>
 				<Spacer />TIPS: try out this command :/ or
 				<router-link to="/" class="links">simply click me</router-link>
+				to go back to home page!
 			</p>
 		</div>
 	</div>

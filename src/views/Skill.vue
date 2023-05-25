@@ -156,6 +156,7 @@ statusStore.changePageName("skill");
 			<p>
 				<Spacer />TIPS: try out this command :/ or
 				<router-link to="/" class="links">simply click me</router-link>
+				to go back to home page!
 			</p>
 		</div>
 		<div></div>

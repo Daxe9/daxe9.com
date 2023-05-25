@@ -7,11 +7,10 @@ const contentContainer = useLineNumber();
 const statusStore = useStatusStore();
 const route = useRoute();
 
-let issues: any = route.meta.issues ?? []
+let issues: any = route.meta.issues ?? [];
 issues = issues.reverse();
 
 statusStore.changePageName("roadmap");
-
 
 type RoadmapRoute = {
 	event: string;
@@ -65,6 +64,7 @@ const roadmap: RoadmapRoute[] = [
 			<p>
 				<Spacer />TIPS: try out this command :/ or
 				<router-link to="/" class="links">simply click me</router-link>
+				to go back to home page!
 			</p>
 		</div>
 		<div></div>

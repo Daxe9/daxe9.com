@@ -24,10 +24,14 @@ routes.pop();
 		</div>
 		<div></div>
 		<div></div>
+		<div></div>
+		<div></div>
+		<div><Spacer :space="4" /></div>
 		<div>
 			<p>
 				<Spacer />TIPS: try out this command :/ or
 				<router-link to="/" class="links">simply click me</router-link>
+				to go back to home page!
 			</p>
 		</div>
 	</div>

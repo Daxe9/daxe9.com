@@ -107,6 +107,7 @@ watch(screenWidth, (newValue: number) => {
 				<p>type `:[path of the page]`</p>
 			</div>
 		</div>
+		<div v-show="showDetails"></div>
 		<div v-show="showDetails" class="details bold centered-text">
 			<div>
 				<a href="/help" class="links">:help</a>
@@ -121,11 +122,21 @@ watch(screenWidth, (newValue: number) => {
 			from Florence.
 		</div>
 		<div v-show="showDetails" class="details">
-			Currently, I am taking a pre computer-science course at A. Meucci, but most of knowledge
-			is self-taught. I have a dedicated page for my skills where others can learn more about
-			them(visit <router-link class="links" to="/skill">/skill</router-link>).
+			Currently, I am taking a pre computer-science course at A. Meucci, but most of the
+			knowledge is self-taught. I have a dedicated page for showcasing my skills, where others
+			can learn more about them(visit
+			<router-link class="links" to="/skill">/skill</router-link>). Since I am a big fan of
+			Vim motion, Vim and terminal based applications in general, I have decided to challenge
+			myself by creating an entire site powered by Vim's features, providing an immersive
+			keyboard-driven experience. Whether you are a fellow Vim enthusiast or simply curious
+			about my journey, I encourage you to embark on this adventure with me.
 		</div>
-		<div v-show="showDetails" class="details"></div>
+		<div v-show="showDetails" class="details">
+			<p>
+				This website is still in
+				<router-link class="links" to="/roadmap">development</router-link>, have mercy:)
+			</p>
+		</div>
 		<div v-show="showDetails" class="details"></div>
 		<div v-show="showDetails" class="details"></div>
 	</div>
