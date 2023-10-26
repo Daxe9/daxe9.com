@@ -19,6 +19,10 @@ $status-bar-text-color: #fcc69f;
 	font-display: swap;
 }
 
+html, body, #app {
+    height: 100%;
+}
+
 body {
 	margin: 0;
 	font-family: "JetBrains Mono";
@@ -39,7 +43,7 @@ body {
 }
 
 #app {
-	height: 100vh;
+	height: 100%;
 }
 
 .main-container {
@@ -48,12 +52,12 @@ body {
 	height: 100%;
 
 	.router {
-		flex-basis: 95%;
+		height: 95%;
 		overflow-y: scroll;
 		scrollbar-width: none;
 	}
 	.controller {
-		flex-basis: 5%;
+		height: 5%;
 		display: flex;
 		flex-direction: column;
 		.status-bar {
@@ -63,7 +67,6 @@ body {
 			flex-direction: row;
 			justify-content: space-between;
 			.status-text {
-				font-size: 0.95em;
 				font-weight: bold;
 				width: fit-content;
 				background-color: $status-bar-block-color;

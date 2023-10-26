@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import { useLineNumber } from "../composables/lineNumber";
 import { useHead } from "unhead";
 import { useStatusStore } from "../store/status";
@@ -8,12 +9,21 @@ const contentContainer = useLineNumber();
 const statusStore = useStatusStore();
 const errorStore = useErrorStore();
 
-const message = errorStore.message || "Something went wrong";
-console.log(message);
+let lastErrorMessage = ""
+const message = ref<string>(errorStore.message || "Something went wrong!");
+errorStore.$subscribe((_, state) => {
+    message.value = state.message;
+})
 
 useHead({
 	title: "😭"
 });
+
+function getErrorMessage(): string {
+    const result = message.value !== lastErrorMessage ? message.value : lastErrorMessage;
+    lastErrorMessage = result;
+    return result;
+}
 
 statusStore.changePageName("error");
 </script>
@@ -28,7 +38,7 @@ statusStore.changePageName("error");
 		</div>
 		<div></div>
 		<div class="my-fucking-name">
-			<p><Spacer :space="4" />{{ message }}</p>
+			<p><Spacer :space="4" />{{ getErrorMessage() }}</p>
 		</div>
 		<div></div>
 		<div></div>

@@ -11,7 +11,7 @@ export const routes = [
 	{
 		path: "/",
 		name: "Main",
-		component: Main
+		component: Main,
 	},
 	{
 		path: "/skill",
@@ -82,7 +82,7 @@ export const routes = [
 		component: () => import("../views/Help.vue")
 	},
 	{
-		path: "/error",
+        path: "/error",
 		name: "Error",
 		component: () => import("../views/Error.vue"),
 		meta: {
@@ -96,7 +96,25 @@ export const routes = [
 	}
 ];
 
-export default createRouter({
+const router = createRouter({
 	routes,
 	history: createWebHistory()
 });
+
+// check whether the access is from a mobile device
+function isMobileDevice() {
+    return /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+router.beforeEach((to, _, next) => {
+    if (to.name !== "Error") {
+        if (isMobileDevice()) {
+            const errorStore = useErrorStore();
+            errorStore.changeMessage("Mobile devices are not supported yet! :(")
+            return next("/error");
+        }
+    }
+    return next()
+})
+
+export default router;
