@@ -9,20 +9,20 @@ const contentContainer = useLineNumber();
 const statusStore = useStatusStore();
 const errorStore = useErrorStore();
 
-let lastErrorMessage = ""
+let lastErrorMessage = "";
 const message = ref<string>(errorStore.message || "Something went wrong!");
 errorStore.$subscribe((_, state) => {
-    message.value = state.message;
-})
+	message.value = state.message;
+});
 
 useHead({
 	title: "😭"
 });
 
 function getErrorMessage(): string {
-    const result = message.value !== lastErrorMessage ? message.value : lastErrorMessage;
-    lastErrorMessage = result;
-    return result;
+	const result = message.value !== lastErrorMessage ? message.value : lastErrorMessage;
+	lastErrorMessage = result;
+	return result;
 }
 
 statusStore.changePageName("error");

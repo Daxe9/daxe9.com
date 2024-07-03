@@ -12,11 +12,6 @@ useHead({
 		{
 			name: "description",
 			content: "Welcome to my website! Hope you will enjoy it!"
-		},
-		{
-			name: "keywords",
-			content:
-				"Davide Xie, Davide, Xie, davide xie, davide, xie, daxe9, Daxe9, daxe9.com, daxe9.github.io, github.com/Daxe9"
 		}
 	]
 });
@@ -32,25 +27,28 @@ statusStore.changePageName("xie");
 
 if (import.meta.env.PROD) {
 	// TODO: better implementation than a setTimeout
-	setTimeout(() => {
-		showDetails.value = true;
-		gsap.fromTo(
-			".details",
-			{
-				opacity: 0,
-				x: -100
-			},
-			{
-				opacity: 1,
-				duration: 1.5,
-				x: 0,
-				stagger: {
-					each: 0.5,
-					from: "start"
+	setTimeout(
+		() => {
+			showDetails.value = true;
+			gsap.fromTo(
+				".details",
+				{
+					opacity: 0,
+					x: -100
+				},
+				{
+					opacity: 1,
+					duration: 1.5,
+					x: 0,
+					stagger: {
+						each: 0.5,
+						from: "start"
+					}
 				}
-			}
-		);
-	}, typeSpeed * title.length + 400);
+			);
+		},
+		typeSpeed * title.length + 400
+	);
 } else {
 	showDetails.value = true;
 }
@@ -110,7 +108,7 @@ watch(screenWidth, (newValue: number) => {
 		<div v-show="showDetails"></div>
 		<div v-show="showDetails" class="details bold centered-text">
 			<div>
-				<a href="/help" class="links">:help</a>
+				<a href="/help" class="links">:help - Tutorial</a>
 			</div>
 		</div>
 		<div v-show="showDetails"></div>
@@ -118,19 +116,20 @@ watch(screenWidth, (newValue: number) => {
 		<div v-show="showDetails"></div>
 		<div v-show="showDetails" class="details"><Spacer />Greetings!</div>
 		<div v-show="showDetails" class="details">
-			I am <span class="my-fucking-name">Davide Xie</span>, an 18-year-old high school student
-			from Florence.
+			I am <span class="my-fucking-name">Davide Xie</span>, an 20-year-old student from
+			Florence.
 		</div>
 		<div v-show="showDetails" class="details">
-			Currently, I am taking a pre computer-science course at A. Meucci, but most of the
-			knowledge is self-taught. I have a dedicated page for showcasing my skills, where others
-			can learn more about them(visit
+			Currently, I am a pre-computer science student who has recently graduated from high
+			school - ITIS Antonio Meucci. Most of my knowledge is self-taught. I have a dedicated
+			page for showcasing my skills, where others can learn more about them(visit
 			<router-link class="links" to="/skill">/skill</router-link>). Since I am a big fan of
 			Vim motion, Vim and terminal based applications in general, I have decided to challenge
 			myself by creating an entire site powered by Vim's features, providing an immersive
 			keyboard-driven experience. Whether you are a fellow Vim enthusiast or simply curious
 			about my journey, I encourage you to embark on this adventure with me.
 		</div>
+		<div v-show="showDetails"></div>
 		<div v-show="showDetails" class="details">
 			<p>
 				This website is still in

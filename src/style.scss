@@ -19,8 +19,10 @@ $status-bar-text-color: #fcc69f;
 	font-display: swap;
 }
 
-html, body, #app {
-    height: 100%;
+html,
+body,
+#app {
+	height: 100%;
 }
 
 body {
@@ -169,7 +171,8 @@ span.line-number {
 	word-spacing: 0.1px;
 }
 
-.my-fucking-name {
+.my-fucking-name,
+.highlighted {
 	color: #f3a654;
 }
 

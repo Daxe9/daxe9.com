@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { useScreenSize } from "./composables/screenSize";
-import {useCommandHandler} from "./composables/commandHandler"
+import { useCommandHandler } from "./composables/commandHandler";
 import { useStatusStore } from "./store/status";
 import { useHead } from "unhead";
 
@@ -9,12 +9,7 @@ const statusStore = useStatusStore();
 const mainContainer = ref<HTMLElement | null>(null);
 const { width: screenWidth } = useScreenSize();
 const pageName = ref<string>(statusStore.pageName);
-const {
-    command,
-    mode,
-    isSemiPressed: _,
-    inputHandler
-} = useCommandHandler();
+const { command, mode, isSemiPressed: _, inputHandler } = useCommandHandler();
 
 useHead({
 	titleTemplate: "%s | Davide Xie",
@@ -40,7 +35,6 @@ onMounted(() => {
 statusStore.$subscribe((_, state) => {
 	pageName.value = state.pageName;
 });
-
 </script>
 
 <template>

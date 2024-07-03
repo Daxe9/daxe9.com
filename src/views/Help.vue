@@ -2,7 +2,17 @@
 import { useLineNumber } from "../composables/lineNumber";
 import { useStatusStore } from "../store/status";
 import { routes } from "../router";
+import { useHead } from "unhead";
 
+useHead({
+	title: "Tutorial - Help",
+	meta: [
+		{
+			name: "description",
+			content: "Know how to navigate my website"
+		}
+	]
+});
 const contentContainer = useLineNumber();
 const statusStore = useStatusStore();
 
@@ -16,6 +26,20 @@ routes.pop();
 		<div></div>
 		<div></div>
 		<div></div>
+		<div></div>
+		<div><Spacer :space="4" />Tutorial:</div>
+		<div>
+			<Spacer :space="4" />You can use links to navigate between different web pages in my
+			website.
+		</div>
+		<div>
+			<Spacer :space="4" />However, it offers
+			<span class="highlighted">vim motion inspired</span> navigation.
+		</div>
+		<div>
+			<Spacer :space="4" />Using <span class="highlighted">:&ltpage-name&gt</span> you can go
+			to that page.
+		</div>
 		<div></div>
 		<div><Spacer :space="4" />The following is a list of available pages in my website!</div>
 		<div></div>

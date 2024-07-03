@@ -2,7 +2,7 @@ import { useSnakeGameStore } from "src/store/snakeGame";
 import { Direction } from "src/services/snakeGame";
 
 export function gameInput(e: KeyboardEvent) {
-    const snakeGameStore = useSnakeGameStore();
+	const snakeGameStore = useSnakeGameStore();
 	// NOTE: do not change this to !snakeGameStore.canPlay
 	if (snakeGameStore.canPlay === false) {
 		snakeGameStore.canPlay = true;

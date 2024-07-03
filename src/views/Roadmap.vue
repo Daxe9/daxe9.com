@@ -2,6 +2,17 @@
 import { useLineNumber } from "../composables/lineNumber";
 import { useStatusStore } from "../store/status";
 import { useRoute } from "vue-router";
+import { useHead } from "unhead";
+
+useHead({
+	title: "Roadmap",
+	meta: [
+		{
+			name: "description",
+			content: "Know my roadmap"
+		}
+	]
+});
 
 const contentContainer = useLineNumber();
 const statusStore = useStatusStore();
