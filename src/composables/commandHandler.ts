@@ -14,7 +14,7 @@ export function useCommandHandler() {
 	const command = ref<string>("");
 	const mode = ref<Mode>(Mode.NORMAL);
 	// check whether the semicolon is pressed for page redirecting
-	const isSemiPressed = ref<boolean>(false);
+	const isLeaderKeyPressed = ref<boolean>(false);
 
 	function inputHandler(e: KeyboardEvent) {
 		// handler insert mode
@@ -25,17 +25,17 @@ export function useCommandHandler() {
 
 		// when the semicolon is pressed,
 		// change the mode to COMMAND and clear the remain command
-		if (e.key === ":") {
-			isSemiPressed.value = true;
+		if (e.key === ":" || e.key === "/") {
+			isLeaderKeyPressed.value = true;
 			mode.value = Mode.COMMAND;
-			command.value = ":";
+			command.value = e.key;
 		} else {
 			// check if the pressed key is not a special key, e.g. shift ctrl alt
-			if (isSemiPressed.value && e.key.length === 1) {
+			if (isLeaderKeyPressed.value && e.key.length === 1) {
 				command.value += e.key;
 			}
 
-			// chech whether user has pressed backspace key
+			// check whether user has pressed backspace key
 			if (e.key === "Backspace") {
 				command.value = command.value.slice(0, -1);
 			}
@@ -43,21 +43,73 @@ export function useCommandHandler() {
 
 		// check whether enter is pressed or there are no characters remain
 		if (e.key === "Enter" || command.value === "") {
-			isSemiPressed.value = false;
+			isLeaderKeyPressed.value = false;
 
 			mode.value = Mode.NORMAL;
 
-			// remove the first character ":" and remove whitespaces
-			const pathName = command.value.slice(1).replace(/\s/g, "");
+			if (command.value.charAt(0) === ":") {
+				// check whether user wants to go the home page
+				if (command.value.length === 1) {
+					router.push("/")
+				} else {
+					// remove the first character ":" and remove whitespaces
+					const pathName = command.value.slice(1).replace(/\s/g, "");
+					// redirect to selected page
+					router.push(pathName);
+				}
+			} else {
+				// find occurrences
+				console.log(command.value);
 
-			// redirect to selected page
-			router.push(pathName);
+				// if the input string is not empty like "/"
+				if (command.value.length !== 1) {
+					// filter out all already highlighted elements
+					const highlightedElements = document.querySelectorAll("span.occurrence");
+					highlightedElements.forEach((element) => {
+						element.classList.remove("occurrence");
+					})
+
+					const textToHighlight = command.value.slice(1).replace(/\s/g, "");
+					// escape all special characters
+					const escapedTextToHighlight = textToHighlight.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+
+					// select container div in order to search within it
+					const contentContainer = document.querySelector(".content-container") as Element;
+
+					const regex = new RegExp(`${escapedTextToHighlight}`, "gi");
+
+					// Function to highlight text in text nodes
+					function highlightNode(node: any) {
+						// text node
+						if (node.nodeType === 3) {
+							const text = node.nodeValue;
+							const newText = text.replace(regex, `<span class="occurrence">${textToHighlight}</span>`);
+							// check if the text contains the selected word
+							if (newText !== text) {
+								const span = document.createElement('span');
+								span.innerHTML = newText;
+								node.parentNode.replaceChild(span, node);
+							}
+						// check if the node is an element node(div, p, span etc..) and it is not script and style tag
+						} else if (node.nodeType === 1 && node.nodeName !== 'SCRIPT' && node.nodeName !== 'STYLE') {
+							// recursively highlight child nodes
+							for (let i = 0; i < node.childNodes.length; i++) {
+								highlightNode(node.childNodes[i]);
+							}
+						}
+					}
+
+					// Start highlighting from the content element
+					highlightNode(contentContainer);
+				}
+			}
+
 		}
 	}
 	return {
 		command,
 		mode,
-		isSemiPressed,
+		isLeaderKeyPressed,
 		inputHandler
 	};
 }
