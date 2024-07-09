@@ -9,7 +9,7 @@ const statusStore = useStatusStore();
 const mainContainer = ref<HTMLElement | null>(null);
 const { width: screenWidth } = useScreenSize();
 const pageName = ref<string>(statusStore.pageName);
-const { command, mode, isSemiPressed: _, inputHandler } = useCommandHandler();
+const { command, mode, isLeaderKeyPressed: _, inputHandler } = useCommandHandler();
 
 useHead({
 	titleTemplate: "%s | Davide Xie",
