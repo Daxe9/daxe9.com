@@ -67,8 +67,7 @@ export function useCommandHandler() {
 				}
 			} else {
 				// if the input string is not empty like "/"
-				if (command.value.length !== 1) {
-					console.log("finding");
+				if (command.value.length > 1) {
 					// filter out all already highlighted elements
 					const highlightedElements = document.querySelectorAll("span.occurrence");
 					highlightedElements.forEach((element) => {
@@ -119,7 +118,6 @@ export function useCommandHandler() {
 
 					// Start highlighting from the content element
 					highlightNode(contentContainer);
-					command.value = ` \"${textToHighlight}\"...`;
 				}
 			}
 		}
