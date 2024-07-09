@@ -23,6 +23,14 @@ export function useCommandHandler() {
 			return;
 		}
 
+		if (
+			command.value.length === 1 &&
+			(command.value.charAt(0) === ":" || command.value.charAt(0) === "/")
+		) {
+			isLeaderKeyPressed.value = true;
+			mode.value = Mode.COMMAND;
+		}
+
 		// when the semicolon is pressed,
 		// change the mode to COMMAND and clear the remain command
 		if (e.key === ":" || e.key === "/") {
@@ -50,7 +58,7 @@ export function useCommandHandler() {
 			if (command.value.charAt(0) === ":") {
 				// check whether user wants to go the home page
 				if (command.value.length === 1) {
-					router.push("/")
+					router.push("/");
 				} else {
 					// remove the first character ":" and remove whitespaces
 					const pathName = command.value.slice(1).replace(/\s/g, "");
@@ -58,40 +66,50 @@ export function useCommandHandler() {
 					router.push(pathName);
 				}
 			} else {
-				// find occurrences
-				console.log(command.value);
-
 				// if the input string is not empty like "/"
 				if (command.value.length !== 1) {
+					console.log("finding")
 					// filter out all already highlighted elements
 					const highlightedElements = document.querySelectorAll("span.occurrence");
 					highlightedElements.forEach((element) => {
 						element.classList.remove("occurrence");
-					})
+					});
 
 					const textToHighlight = command.value.slice(1).replace(/\s/g, "");
 					// escape all special characters
-					const escapedTextToHighlight = textToHighlight.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+					const escapedTextToHighlight = textToHighlight.replace(
+						/[-\/\\^$*+?.()|[\]{}]/g,
+						"\\$&"
+					);
 
 					// select container div in order to search within it
-					const contentContainer = document.querySelector(".content-container") as Element;
+					const contentContainer = document.querySelector(
+						".content-container"
+					) as Element;
 
-					const regex = new RegExp(`${escapedTextToHighlight}`, "gi");
+					const regex = new RegExp(`${escapedTextToHighlight}`, "g");
 
 					// Function to highlight text in text nodes
 					function highlightNode(node: any) {
 						// text node
 						if (node.nodeType === 3) {
 							const text = node.nodeValue;
-							const newText = text.replace(regex, `<span class="occurrence">${textToHighlight}</span>`);
+							const newText = text.replace(regex, (match: string) => {
+								return `<span class="occurrence">${match}</span>`;
+							});
+
 							// check if the text contains the selected word
 							if (newText !== text) {
-								const span = document.createElement('span');
+								const span = document.createElement("span");
 								span.innerHTML = newText;
 								node.parentNode.replaceChild(span, node);
 							}
-						// check if the node is an element node(div, p, span etc..) and it is not script and style tag
-						} else if (node.nodeType === 1 && node.nodeName !== 'SCRIPT' && node.nodeName !== 'STYLE') {
+							// check if the node is an element node(div, p, span etc..) and it is not script and style tag
+						} else if (
+							node.nodeType === 1 &&
+							node.nodeName !== "SCRIPT" &&
+							node.nodeName !== "STYLE"
+						) {
 							// recursively highlight child nodes
 							for (let i = 0; i < node.childNodes.length; i++) {
 								highlightNode(node.childNodes[i]);
@@ -101,9 +119,9 @@ export function useCommandHandler() {
 
 					// Start highlighting from the content element
 					highlightNode(contentContainer);
+					command.value = ` \"${textToHighlight}\"...`;
 				}
 			}
-
 		}
 	}
 	return {

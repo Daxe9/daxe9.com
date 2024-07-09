@@ -42,8 +42,14 @@ routes.pop();
 		</div>
 		<div></div>
 		<div><Spacer :space="4" />Highlighting:</div>
-		<div><Spacer :space="4" />Using <span class="highlighted">/&ltword&gt</span> you can find all occurrences of that word!</div>
-		<div><Spacer :space="4" />I know Firefox users could not be happy with this command, well deal with it.</div>
+		<div>
+			<Spacer :space="4" />Using <span class="highlighted">/&ltword&gt</span> you can find all
+			occurrences of that word!
+		</div>
+		<div>
+			<Spacer :space="4" />I know Firefox users could not be happy with this command, well
+			deal with it.
+		</div>
 		<div></div>
 		<div></div>
 		<div><Spacer :space="4" />The following is a list of available pages in my website!</div>
