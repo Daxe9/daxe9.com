@@ -68,7 +68,7 @@ export function useCommandHandler() {
 			} else {
 				// if the input string is not empty like "/"
 				if (command.value.length !== 1) {
-					console.log("finding")
+					console.log("finding");
 					// filter out all already highlighted elements
 					const highlightedElements = document.querySelectorAll("span.occurrence");
 					highlightedElements.forEach((element) => {
