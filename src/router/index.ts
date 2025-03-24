@@ -75,7 +75,7 @@ export const routes = [
 			}
 		]
 	},
-    */
+	*/
 	{
 		path: "/help",
 		name: "Help",

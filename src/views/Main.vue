@@ -25,30 +25,28 @@ const { width: screenWidth } = useScreenSize();
 
 statusStore.changePageName("xie");
 
+// release animation when in prod mode
 if (import.meta.env.PROD) {
 	// TODO: better implementation than a setTimeout
-	setTimeout(
-		() => {
-			showDetails.value = true;
-			gsap.fromTo(
-				".details",
-				{
-					opacity: 0,
-					x: -100
-				},
-				{
-					opacity: 1,
-					duration: 1.5,
-					x: 0,
-					stagger: {
-						each: 0.5,
-						from: "start"
-					}
+	setTimeout(() => {
+		showDetails.value = true;
+		gsap.fromTo(
+			".details",
+			{
+				opacity: 0,
+				x: -100
+			},
+			{
+				opacity: 1,
+				duration: 1.5,
+				x: 0,
+				stagger: {
+					each: 0.5,
+					from: "start"
 				}
-			);
-		},
-		typeSpeed * title.length + 400
-	);
+			}
+		);
+	}, typeSpeed * title.length + 400);
 } else {
 	showDetails.value = true;
 }
@@ -130,6 +128,7 @@ watch(screenWidth, (newValue: number) => {
 			about my journey, I encourage you to embark on this adventure with me.
 		</div>
 		<div v-show="showDetails"></div>
+		<div v-show="showDetails">Yaa as you can see the paragraph before is ai generated</div>
 		<div v-show="showDetails" class="details">
 			<p>
 				This website is still in
