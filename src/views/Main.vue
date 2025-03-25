@@ -52,7 +52,7 @@ if (import.meta.env.PROD) {
 }
 
 function screenWidthChanged(value: number) {
-	// check if the screen is too small to show the details
+	// check if the screen is too small to show the details then change items to left aligned
 	if (value < 610) {
 		for (const line of Array.from(contentContainer.value?.children || [])) {
 			if (line.classList.contains("centered-text")) {
@@ -118,9 +118,9 @@ watch(screenWidth, (newValue: number) => {
 			Florence.
 		</div>
 		<div v-show="showDetails" class="details">
-			Currently, I am a pre-computer science student who has recently graduated from high
-			school - ITIS Antonio Meucci. Most of my knowledge is self-taught. I have a dedicated
-			page for showcasing my skills, where others can learn more about them(visit
+			Currently, I am enrolled in Industrial Engineering Program at Politecnico di Milano.
+			Most of my knowledge is self-taught. I have a dedicated page for showcasing my skills,
+			where others can learn more about them(visit
 			<router-link class="links" to="/skill">/skill</router-link>). Since I am a big fan of
 			Vim motion, Vim and terminal based applications in general, I have decided to challenge
 			myself by creating an entire site powered by Vim's features, providing an immersive

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useLineNumber } from "../composables/lineNumber";
 import { useHead } from "unhead";
+import { useStatusStore } from "../store/status";
 
 useHead({
 	title: "Contact",
@@ -16,6 +17,9 @@ useHead({
 	]
 });
 const contentContainer = useLineNumber();
+const statusStore = useStatusStore();
+
+statusStore.changePageName("contact");
 </script>
 
 <template>
@@ -38,10 +42,10 @@ const contentContainer = useLineNumber();
 		<div>
 			<Spacer :space="4" />linkedin -
 			<a
-				href="https://www.linkedin.com/in/i-m-a-bacon-but-i-have-a-dream-8326a922b/"
+				href="https://www.linkedin.com/in/davide-xie-8326a922b/"
 				target="_blank"
 				class="links"
-				>I'm a bacon but I have a dream</a
+				>Davide Xie</a
 			>
 		</div>
 		<div></div>
