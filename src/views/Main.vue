@@ -116,7 +116,7 @@ watch(screenWidth, (newValue: number) => {
 			developing projects in my free time.
 		</div>
 		<div v-show="showDetails" class="details"></div>
-		<div v-show="showDetails">
+		<div v-show="showDetails" class="details">
 			<Spacer />For those who don't know why this website is kind weird,
 		</div>
 		<div v-show="showDetails" class="details">
