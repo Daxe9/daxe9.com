@@ -111,31 +111,55 @@ watch(screenWidth, (newValue: number) => {
 		</div>
 		<div v-show="showDetails"></div>
 		<div v-show="showDetails"></div>
-		<div v-show="showDetails"></div>
-		<div v-show="showDetails" class="details"><Spacer />Greetings!</div>
 		<div v-show="showDetails" class="details">
-			I am <span class="my-fucking-name">Davide Xie</span>, an 20-year-old student from
-			Florence.
+			<Spacer />Sup, I'm <span class="my-fucking-name">Davide Xie</span>, a student who loves
+			developing projects in my free time.
+		</div>
+		<div v-show="showDetails" class="details"></div>
+		<div v-show="showDetails">
+			<Spacer />For those who don't know why this website is kind weird,
 		</div>
 		<div v-show="showDetails" class="details">
-			Currently, I am enrolled in Industrial Engineering Program at Politecnico di Milano.
-			Most of my knowledge is self-taught. I have a dedicated page for showcasing my skills,
-			where others can learn more about them(visit
-			<router-link class="links" to="/skill">/skill</router-link>). Since I am a big fan of
-			Vim motion, Vim and terminal based applications in general, I have decided to challenge
-			myself by creating an entire site powered by Vim's features, providing an immersive
-			keyboard-driven experience. Whether you are a fellow Vim enthusiast or simply curious
-			about my journey, I encourage you to embark on this adventure with me.
+			this is inspired by the sublime text editor VIM, so the appearence may seem quite odd
+			for some of you.
 		</div>
-		<div v-show="showDetails"></div>
-		<div v-show="showDetails">Yaa as you can see the paragraph before is ai generated</div>
+		<div v-show="showDetails" class="details">
+			<Spacer />BUT for those who do know what Vim is, this is website is still shit... lmao
+		</div>
+		<div v-show="showDetails" class="details"></div>
+		<div v-show="showDetails" class="details"><Spacer />As now, I've only manager to have</div>
+		<div v-show="showDetails" class="details">
+			<Spacer />1. <span class="my-fucking-name">routes navigation</span>:
+		</div>
+		<div v-show="showDetails" class="details">
+			<Spacer space="4" />typing directly ':' and followed by the route name, like
+		</div>
+		<div v-show="showDetails" class="details"><Spacer space="8" />:contact</div>
+		<div v-show="showDetails" class="details">
+			2.<Spacer /><span class="my-fucking-name">text highlighting</span>:
+		</div>
+		<div v-show="showDetails" class="details">
+			<Spacer space="4" />typing directly '/' and followed by the target word, like
+		</div>
+		<div v-show="showDetails" class="details"><Spacer space="8" />/Davide&ltEnter&gt</div>
+		<div v-show="showDetails" class="details"></div>
+		<div v-show="showDetails" class="details"></div>
 		<div v-show="showDetails" class="details">
 			<p>
 				This website is still in
 				<router-link class="links" to="/roadmap">development</router-link>, have mercy:)
 			</p>
 		</div>
-		<div v-show="showDetails" class="details"></div>
+		<div v-show="showDetails" class="details">
+			<p>
+				You can find the
+
+				<a href="https://github.com/Daxe9/daxe9.com" target="_blank" class="links"
+					>source code</a
+				>
+				on my github
+			</p>
+		</div>
 		<div v-show="showDetails" class="details"></div>
 	</div>
 </template>

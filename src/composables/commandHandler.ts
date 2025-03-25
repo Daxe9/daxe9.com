@@ -76,6 +76,9 @@ export function useCommandHandler() {
 			case Mode.COMMAND: {
 				console.log("Command Mode");
 				switch (e.key) {
+					case "Escape":
+						goToNormalMode();
+						break;
 					case "Backspace":
 						command.value = command.value.slice(0, -1);
 						break;
@@ -118,6 +121,9 @@ export function useCommandHandler() {
 						}
 						break;
 					default:
+						if (e.key === "c" && e.ctrlKey) {
+							goToNormalMode();
+						}
 						if (isLeaderKeyPressed.value && e.key.length === 1) {
 							command.value += e.key;
 						}
@@ -131,16 +137,8 @@ export function useCommandHandler() {
 	}
 
 	function inputHandler(e: KeyboardEvent) {
-		console.log(e);
-		// if user tries to go back to normal mode
-		if (e.key === "Escape" || (e.key === "c" && e.ctrlKey)) {
-			goToNormalMode();
-		}
-		// if (e.key === "i" && !command.value) {
-		// 	goToNormalMode("Cannot make changes, 'modifiable' is off");
-		// }
-
 		keyStrokesHandler(e);
+		// go back to command mode if nothing is in the input
 		if (command.value === "") {
 			isLeaderKeyPressed.value = false;
 			mode.value = Mode.NORMAL;

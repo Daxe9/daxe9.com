@@ -14,6 +14,11 @@ export const routes = [
 		component: Main
 	},
 	{
+		path: "/me",
+		name: "Me",
+		component: () => import("../views/Me.vue")
+	},
+	{
 		path: "/skill",
 		name: "Skill",
 		component: () => import("../views/Skill.vue")
